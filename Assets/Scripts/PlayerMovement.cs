@@ -11,6 +11,16 @@ public class PlayerMovement : MonoBehaviour
     public float linearDrag = 4f;
     Vector2 direction;
     Rigidbody2D rb;
+
+    public Animator animator;
+    public bool facingRight = true;
+
+    public float jump = 2f;
+
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +30,18 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown("Jump"))
+        {
+            rb.velocity = new Vector2(rb.velocity.x,jump);
+        }
         direction = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 
+
+
      void FixedUpdate()
     {
+        Debug.Log(rb.velocity.x);
         Move(direction.x);
         modifyPhysics();
 
@@ -33,14 +50,26 @@ public class PlayerMovement : MonoBehaviour
 
      void Move(float movespeed)
     {
-       
+        
         if (Mathf.Abs(rb.velocity.x) > maxSpeed)
         { 
             
             rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
-            Debug.Log(rb.velocity.x);
+            
         } 
         rb.AddForce(Vector2.right * movespeed * speedMultiplier);
+        animator.SetFloat("horizontal", Mathf.Abs(rb.velocity.x));
+
+        if((movespeed > 0 && !facingRight) || (movespeed < 0 && facingRight))
+        {
+            flipCharacter();
+        }
+    }
+
+   public void flipCharacter()
+    {
+        facingRight = !facingRight;
+        transform.rotation = Quaternion.Euler(0f, facingRight ? 0 : 180, 0f);
     }
 
     void modifyPhysics()

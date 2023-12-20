@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b39dd5952bb6e5c459928ee334a4f62b
+guid: 8d6dfaff683b91a49a25326bd513abc0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cyborg_run_attack_0
+      name: Cyborg_run_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,20 +131,20 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdc22f7e4d5d22547b4c560639d139e3
-      internalID: -1551022325
+      spriteID: 99c1219a259128542bc96769c5b391d0
+      internalID: 946971289
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyborg_run_attack_1
+      name: Cyborg_run_1
       rect:
         serializedVersion: 2
         x: 48
@@ -152,20 +152,20 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 452421043026c5d48b8585935d99b938
-      internalID: -1504820974
+      spriteID: 4f3fe53935f3e564184afbe8647a67c3
+      internalID: -1555555580
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyborg_run_attack_2
+      name: Cyborg_run_2
       rect:
         serializedVersion: 2
         x: 96
@@ -173,20 +173,20 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ae93b689e3dd49449f9acc2cedc84e8
-      internalID: 675221231
+      spriteID: 1194ccd51fd447d4aaf3c2d315d0b826
+      internalID: 1646267471
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyborg_run_attack_3
+      name: Cyborg_run_3
       rect:
         serializedVersion: 2
         x: 144
@@ -194,20 +194,20 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a777139071b2d3447a3963f31c765e41
-      internalID: -1981641265
+      spriteID: 44dcfdbadc041064ab6c50c9677b2af2
+      internalID: 514506277
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyborg_run_attack_4
+      name: Cyborg_run_4
       rect:
         serializedVersion: 2
         x: 192
@@ -215,20 +215,20 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa82f87432a2ed04c9f2f857f23d243c
-      internalID: 1330339587
+      spriteID: 061448086c0ac4a47a4648934ba8d816
+      internalID: -1997147519
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyborg_run_attack_5
+      name: Cyborg_run_5
       rect:
         serializedVersion: 2
         x: 240
@@ -236,14 +236,14 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d48689c08c45fc41acd69d220762cd6
-      internalID: -1395229958
+      spriteID: 8cbfd804b39d10d4bba727f454dce564
+      internalID: -122237415
       vertices: []
       indices: 
       edges: []
@@ -259,12 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cyborg_run_attack_0: -1551022325
-      Cyborg_run_attack_1: -1504820974
-      Cyborg_run_attack_2: 675221231
-      Cyborg_run_attack_3: -1981641265
-      Cyborg_run_attack_4: 1330339587
-      Cyborg_run_attack_5: -1395229958
+      Cyborg_run_0: 946971289
+      Cyborg_run_1: -1555555580
+      Cyborg_run_2: 1646267471
+      Cyborg_run_3: 514506277
+      Cyborg_run_4: -1997147519
+      Cyborg_run_5: -122237415
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
