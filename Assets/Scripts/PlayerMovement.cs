@@ -6,9 +6,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float speed = 10f;
+    public float speedMultiplier = 10f;
     public float maxSpeed = 7f;
-    Vector2 movement;
+    public float linearDrag = 4f;
+    Vector2 direction;
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -19,12 +20,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        direction = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 
      void FixedUpdate()
     {
-        Move(movement.x);
+        Move(direction.x);
+        modifyPhysics();
+
         //rb.velocity = new Vector2(movement.x * speed * Time.deltaTime, rb.velocity.y);
     }
 
@@ -37,8 +40,19 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
             Debug.Log(rb.velocity.x);
         } 
-        rb.AddForce(Vector2.right * movespeed * speed);
+        rb.AddForce(Vector2.right * movespeed * speedMultiplier);
     }
 
+    void modifyPhysics()
+    {
+        if(Math.Abs(direction.x) < 0.4f)
+        {
+            rb.drag = linearDrag;
+        }
+        else
+        {
+            rb.drag = 0;
+        }
+    }
 
 }
