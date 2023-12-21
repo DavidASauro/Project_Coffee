@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     
     Vector2 direction;
     Rigidbody2D rb;
+    private Transform originalParent;
 
     [Header("Physics")]
     public float speedMultiplier = 10f;
@@ -36,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        originalParent = transform.parent;
     }
 
     // Update is called once per frame
@@ -86,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
      void FixedUpdate()
     {
-        Debug.Log(rb.velocity.x);
+        //Debug.Log(rb.velocity.x);
         Move(direction.x);
         if (jumpTimer > Time.time && onGround)
         {
@@ -153,5 +156,20 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+
+    public void SetParent(Transform newParent)
+    {
+        originalParent = transform.parent;
+        transform.parent = newParent;
+    }
+
+    public void ResetParent()
+    {
+        transform.parent = originalParent;
+    }
+
+
+
 
 }
