@@ -51,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
         animations();
 
         direction = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        //Debug.Log(rb.velocity.y);
     }
 
     private void OnDrawGizmos()
@@ -133,16 +135,19 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.drag = 0;
             }
+
             rb.gravityScale = 0;
         }
         else
         {
             rb.gravityScale = gravity;
             rb.drag = linearDrag * 0.15f;
-            if (rb.velocity.y<0)
+
+            if (rb.velocity.y < 0)
             {
                 rb.gravityScale = gravity * fallMultiplier;
-            }else if (rb.velocity.y>0 && !Input.GetButton("Jump"))
+
+            }else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
             {
                 rb.gravityScale = gravity * (fallMultiplier / 2);
             }

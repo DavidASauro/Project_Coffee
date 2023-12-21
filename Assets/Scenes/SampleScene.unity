@@ -297,12 +297,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMultiplier: 50
   maxSpeed: 7
-  linearDrag: 10
+  linearDrag: 34.3
   fallMultiplier: 5
   gravity: 1
   animator: {fileID: 834332737}
   facingRight: 1
-  jumpSpeed: 8
+  jumpSpeed: 15
   jumpDelay: 0.25
   onGround: 0
   mask:
@@ -1270,6 +1270,26 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 5, y: -3, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 18
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 6, y: -3, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 17
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 13, y: -3, z: 0}
     second:
       serializedVersion: 2
@@ -1295,6 +1315,16 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 19
       m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 6, y: -2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 18
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1396,10 +1426,10 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: e8fa8ef94d27e8144b0d8104ac5daab6, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 44f13e8b370f7eb449d8be0265b3eef8, type: 2}
+  - m_RefCount: 2
+    m_Data: {fileID: 11400000, guid: 8d373f2c95b013f4b8bccb245b187fa2, type: 2}
   - m_RefCount: 5
     m_Data: {fileID: 11400000, guid: 0e21dc4e9e5bafc44bb4ebf47660179a, type: 2}
   - m_RefCount: 5
@@ -1415,10 +1445,10 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -1423422694, guid: cf05f2c0e91e4d94299af33883f4b2dd, type: 3}
+  - m_RefCount: 2
+    m_Data: {fileID: -631010027, guid: cf05f2c0e91e4d94299af33883f4b2dd, type: 3}
   - m_RefCount: 5
     m_Data: {fileID: 2006936575, guid: 2d63010bbfc2ede4d96270882d4a10e4, type: 3}
   - m_RefCount: 5
@@ -1464,7 +1494,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 398420106, guid: cf05f2c0e91e4d94299af33883f4b2dd, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 59
+  - m_RefCount: 62
     m_Data:
       e00: 1
       e01: 0
@@ -1483,7 +1513,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 59
+  - m_RefCount: 62
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -1554,7 +1584,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 1310333480}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 64b7fc61c204c474da33f293d7659ff0, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1596,6 +1626,38 @@ CompositeCollider2D:
         Y: -20000000
       - X: 220000000
         Y: -20000000
+    - - X: 40000000
+        Y: -40000000
+      - X: 100000000
+        Y: -40000000
+      - X: 100000000
+        Y: -30000000
+      - X: 70000000
+        Y: -30000000
+      - X: 70000000
+        Y: -10000000
+      - X: 68125000
+        Y: -10000000
+      - X: 60000000
+        Y: -18125000
+      - X: 60000000
+        Y: -20000000
+      - X: 58125000
+        Y: -20000000
+      - X: 50000000
+        Y: -28125000
+      - X: 50000000
+        Y: -30000000
+      - X: -110000000
+        Y: -30000000
+      - X: -110000000
+        Y: -40000000
+      - X: -40000000
+        Y: -40000000
+      - X: -40000000
+        Y: -50000000
+      - X: 40000000
+        Y: -50000000
     - - X: 160000000
         Y: -20625000
       - X: 159375008
@@ -1608,22 +1670,6 @@ CompositeCollider2D:
         Y: -40000000
       - X: 160000000
         Y: -40000000
-    - - X: 40000000
-        Y: -40000000
-      - X: 100000000
-        Y: -40000000
-      - X: 100000000
-        Y: -30000000
-      - X: -110000000
-        Y: -30000000
-      - X: -110000000
-        Y: -40000000
-      - X: -40000000
-        Y: -40000000
-      - X: -40000000
-        Y: -50000000
-      - X: 40000000
-        Y: -50000000
     - - X: 270000000
         Y: -40625000
       - X: 269375008
@@ -1668,20 +1714,28 @@ CompositeCollider2D:
       - {x: 19.062492, y: -0.0000076}
       - {x: 19, y: -0.0625108}
       - {x: 19.000029, y: -2}
+    - - {x: 3.999971, y: -5}
+      - {x: 4.0000296, y: -4}
+      - {x: 10, y: -3.999971}
+      - {x: 9.99997, y: -3}
+      - {x: 7, y: -2.9999707}
+      - {x: 6.9999704, y: -1}
+      - {x: 6.812493, y: -1.0000076}
+      - {x: 6, y: -1.8125108}
+      - {x: 5.9999704, y: -2}
+      - {x: 5.8124924, y: -2.0000076}
+      - {x: 5, y: -2.8125107}
+      - {x: 4.9999704, y: -3}
+      - {x: -11, y: -3.0000293}
+      - {x: -10.99997, y: -4}
+      - {x: -4, y: -4.0000296}
+      - {x: -3.999971, y: -5}
     - - {x: 15.999971, y: -4}
       - {x: 15.999992, y: -2.0624924}
       - {x: 15.9374895, y: -2}
       - {x: 13.062493, y: -2.0000076}
       - {x: 13, y: -2.0625107}
       - {x: 13.00003, y: -4}
-    - - {x: 3.999971, y: -5}
-      - {x: 4.0000296, y: -4}
-      - {x: 10, y: -3.999971}
-      - {x: 9.99997, y: -3}
-      - {x: -11, y: -3.0000293}
-      - {x: -10.99997, y: -4}
-      - {x: -4, y: -4.0000296}
-      - {x: -3.999971, y: -5}
     - - {x: 26.999971, y: -6}
       - {x: 26.999994, y: -4.0624924}
       - {x: 26.937492, y: -4}
@@ -1720,7 +1774,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 64b7fc61c204c474da33f293d7659ff0, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
