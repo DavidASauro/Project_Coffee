@@ -131,8 +131,8 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 14, w: 15}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -149,11 +149,11 @@ TextureImporter:
         serializedVersion: 2
         x: 48
         y: 0
-        width: 48
+        width: 30
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 15}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -173,8 +173,8 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 15, w: 15}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -194,8 +194,8 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 14, w: 15}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -213,10 +213,10 @@ TextureImporter:
         x: 192
         y: 0
         width: 48
-        height: 48
+        height: 47
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 17, w: 14}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -233,11 +233,11 @@ TextureImporter:
         serializedVersion: 2
         x: 240
         y: 0
-        width: 48
+        width: 29
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 15}
       outline: []
       physicsShape: []
       tessellationDetail: 0
