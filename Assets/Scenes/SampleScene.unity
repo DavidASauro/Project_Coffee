@@ -331,6 +331,7 @@ MonoBehaviour:
   linearDrag: 34.3
   fallMultiplier: 5
   gravity: 1
+  maxGravity: 50
   animator: {fileID: 834332737}
   facingRight: 1
   jumpSpeed: 15
