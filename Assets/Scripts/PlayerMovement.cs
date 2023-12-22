@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public float linearDrag = 4f;
     public float fallMultiplier = 5f;
     public float gravity = 1f;
+    public float maxGravity = 50f;
 
     [Header("Animations")]
     public Animator animator;
@@ -43,7 +44,9 @@ public class PlayerMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+
+    {  
+        direction = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         onGround = Physics2D.Raycast(transform.position, Vector2.down, groundLength, mask);
 
         if (Input.GetButtonDown("Jump"))
@@ -53,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         
         animations();
 
-        direction = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        
 
         //Debug.Log(rb.velocity.y);
     }
@@ -112,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(Vector2.right * movespeed * speedMultiplier);
         //animator.SetFloat("horizontal", Mathf.Abs(rb.velocity.x));
 
-        if((movespeed > 0 && !facingRight) || (movespeed < 0 && facingRight))
+        if ((movespeed > 0 && !facingRight) || (movespeed < 0 && facingRight))
         {
             flipCharacter();
         }
@@ -142,18 +145,25 @@ public class PlayerMovement : MonoBehaviour
             rb.gravityScale = 0;
         }
         else
-        {
-            rb.gravityScale = gravity;
-            rb.drag = linearDrag * 0.15f;
-
+        {    
             if (rb.velocity.y < 0)
             {
-                rb.gravityScale = gravity * fallMultiplier;
+                
+                rb.gravityScale += fallMultiplier;
+                rb.gravityScale = Mathf.Clamp(rb.gravityScale, gravity, maxGravity);
 
             }else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
             {
-                rb.gravityScale = gravity * (fallMultiplier / 2);
+                rb.gravityScale += fallMultiplier;
+                rb.gravityScale = Mathf.Clamp(rb.gravityScale, gravity, maxGravity);
             }
+            else
+            {
+                rb.gravityScale = gravity;
+                rb.drag = linearDrag * 0.15f;
+            }
+
+        
         }
     }
 
