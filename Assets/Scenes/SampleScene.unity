@@ -332,7 +332,7 @@ MonoBehaviour:
   fallMultiplier: 1
   gravity: 1
   maxGravity: 50
-  animator: {fileID: 0}
+  animator: {fileID: 834332737}
   facingRight: 1
   jumpSpeed: 25
   jumpDelay: 0.25
