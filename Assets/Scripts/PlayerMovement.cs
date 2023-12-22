@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -28,16 +30,20 @@ public class PlayerMovement : MonoBehaviour
     private float jumpTimer;
 
     [Header("Collisions")]
-    public bool onGround = false;
+    public bool onGround = true;
     public LayerMask mask;
-    public float groundLength = 0.6f;
+    public BoxCollider2D coll;
+    
+    
 
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        coll = GetComponent<BoxCollider2D>();
 
         originalParent = transform.parent;
     }
@@ -45,9 +51,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
 
-    {  
+    {
+        
         direction = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        onGround = Physics2D.Raycast(transform.position, Vector2.down, groundLength, mask);
+        onGround = Physics2D.BoxCast(coll.bounds.center,coll.bounds.size,0f,Vector2.down,0.1f,mask);
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -64,7 +71,8 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundLength);
+        Gizmos.DrawWireCube(transform.position, new Vector3(transform.position.x, transform.position.y,0));
+        //Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundLength);
     }
 
     void animations()
