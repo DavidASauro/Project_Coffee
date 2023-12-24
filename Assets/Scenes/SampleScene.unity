@@ -199,7 +199,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &126914026
 SpriteRenderer:
@@ -331,7 +331,7 @@ MonoBehaviour:
   linearDrag: 34.3
   fallMultiplier: 1
   gravity: 1
-  maxGravity: 50
+  maxGravity: 20
   animator: {fileID: 834332737}
   facingRight: 1
   jumpSpeed: 25
@@ -1844,7 +1844,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 1310333480}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: b8ce6911b0f1ff14ab4b4519747825ed, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2046,7 +2046,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b8ce6911b0f1ff14ab4b4519747825ed, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

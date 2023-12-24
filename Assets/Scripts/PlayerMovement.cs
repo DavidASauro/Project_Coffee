@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jumping")]
     public float jumpSpeed = 2f;
     public float jumpDelay = 0.25f;
-    private float jumpTimer;
+    private bool longJump = false;
 
     [Header("Collisions")]
     public bool onGround = true;
@@ -56,9 +56,9 @@ public class PlayerMovement : MonoBehaviour
         direction = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         onGround = Physics2D.BoxCast(coll.bounds.center,coll.bounds.size,0f,Vector2.down,0.1f,mask);
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && onGround)
         {
-            jumpTimer = Time.time + jumpDelay;
+            jump();
         }
         
         animations();
@@ -91,8 +91,17 @@ public class PlayerMovement : MonoBehaviour
 
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
-        rb.AddForce(Vector2.up * jumpSpeed,ForceMode2D.Impulse);
-        jumpTimer = 0;
+
+        if (rb.velocity.x == 0)
+        {
+            rb.AddForce(Vector2.up * jumpSpeed,ForceMode2D.Impulse);
+        }
+        else
+        {
+            rb.AddForce(Vector2.up * jumpSpeed * 0.75f, ForceMode2D.Impulse);
+        }
+        
+ 
 
     }
 
@@ -100,15 +109,12 @@ public class PlayerMovement : MonoBehaviour
 
      void FixedUpdate()
     {
-        //Debug.Log(rb.velocity.x);
+        
         Move(direction.x);
-        if (jumpTimer > Time.time && onGround)
-        {
-            jump();
-        }
+       
         modifyPhysics();
 
-        //rb.velocity = new Vector2(movement.x * speed * Time.deltaTime, rb.velocity.y);
+        
     }
 
      void Move(float movespeed)
@@ -138,6 +144,7 @@ public class PlayerMovement : MonoBehaviour
     void modifyPhysics()
     {
         bool changingDirections = (direction.x > 0 && rb.velocity.x < 0) || (direction.x < 0 && rb.velocity.x > 0);
+        
 
         if (onGround)
         {
@@ -156,18 +163,26 @@ public class PlayerMovement : MonoBehaviour
         {    
             if (rb.velocity.y < 0)
             {
-                
+                if (longJump)
+                {
+                    rb.gravityScale += (fallMultiplier * 3);
+                }
                 rb.gravityScale += fallMultiplier;
                 rb.gravityScale = Mathf.Clamp(rb.gravityScale, gravity, maxGravity);
 
             }else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
             {
+                //short jump
+                longJump = false;
                 rb.gravityScale += fallMultiplier;
                 rb.gravityScale = Mathf.Clamp(rb.gravityScale, gravity, maxGravity);
             }
             else
             {
+                //high jump
+                longJump = true;
                 rb.gravityScale = gravity;
+                rb.gravityScale = Mathf.Clamp(rb.gravityScale, gravity, maxGravity);
                 rb.drag = linearDrag * 0.15f;
             }
 
