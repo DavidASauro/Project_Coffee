@@ -7,12 +7,16 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-    
-    Vector2 direction;
+    [SerializeField]
+    internal PlayerInput inputScript;
+
+    public Vector2 direction;
     Rigidbody2D rb;
     private Transform originalParent;
 
-    [Header("Physics")]
+    [Header("Movement")]
+    public bool movingLeft = false;
+    public bool movingRight = false;
     public float speedMultiplier = 10f;
     public float maxSpeed = 7f;
     public float linearDrag = 4f;
@@ -26,17 +30,13 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jumping")]
     public float jumpSpeed = 2f;
-    public float jumpDelay = 0.25f;
-    private bool longJump = false;
+    public bool jumped = false;
+    
 
     [Header("Collisions")]
-    public bool onGround = true;
+    public bool onGround;
     public LayerMask mask;
     public BoxCollider2D coll;
-    
-    
-
-    
 
 
     // Start is called before the first frame update
@@ -52,27 +52,16 @@ public class PlayerMovement : MonoBehaviour
     void Update()
 
     {
-        
-        direction = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         onGround = Physics2D.BoxCast(coll.bounds.center,coll.bounds.size,0f,Vector2.down,0.1f,mask);
 
-        if (Input.GetButtonDown("Jump") && onGround)
-        {
-            jump();
-        }
-        
+        //play the annimations
+        modifyPhysics();
         animations();
-
-        
-
-        //Debug.Log(rb.velocity.y);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        //Gizmos.DrawWireCube(transform.position, new Vector3(transform.position.x, transform.position.y,0));
-        //Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundLength);
     }
 
     void animations()
@@ -87,109 +76,80 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void jump()
-
+    public void jump()
     {
+        
         rb.velocity = new Vector2(rb.velocity.x, 0);
+        rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+        jumped = false;
+    }
 
-        if (rb.velocity.x == 0)
+     public void moveRight(float movespeed)
+    {
+       
+        movingRight = true;
+        movingLeft = false;
+
+        if (Math.Abs(rb.velocity.x) >= maxSpeed)
         {
-            rb.AddForce(Vector2.up * jumpSpeed,ForceMode2D.Impulse);
+            rb.velocity.Set(Math.Clamp(rb.velocity.x, 0f, maxSpeed), rb.velocity.y);
         }
         else
         {
-            rb.AddForce(Vector2.up * jumpSpeed * 0.75f, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.right * speedMultiplier, ForceMode2D.Force);
         }
-        
- 
-
-    }
-
-
-
-     void FixedUpdate()
-    {
-        
-        Move(direction.x);
        
-        modifyPhysics();
-
-        
-    }
-
-     void Move(float movespeed)
-    {
-        
-        if (Mathf.Abs(rb.velocity.x) > maxSpeed)
-        { 
-            
-            rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
-            
-        } 
-        rb.AddForce(Vector2.right * movespeed * speedMultiplier);
-        //animator.SetFloat("horizontal", Mathf.Abs(rb.velocity.x));
 
         if ((movespeed > 0 && !facingRight) || (movespeed < 0 && facingRight))
         {
             flipCharacter();
         }
+
+       
     }
 
-   public void flipCharacter()
+   public void moveLeft(float movespeed)
+    {
+       
+
+        movingLeft = true;
+        movingRight = false;
+
+        if (Math.Abs(rb.velocity.x) >= maxSpeed)
+        {
+            rb.velocity.Set(Math.Clamp(rb.velocity.x, -maxSpeed, 0f), rb.velocity.y);
+        }
+        else
+        {
+            rb.AddForce(Vector2.left * speedMultiplier, ForceMode2D.Force);
+        }
+
+        if ((movespeed > 0 && !facingRight) || (movespeed < 0 && facingRight))
+        {
+            flipCharacter();
+        }
+         
+    }
+
+
+
+    public void flipCharacter()
     {
         facingRight = !facingRight;
         transform.rotation = Quaternion.Euler(0f, facingRight ? 0 : 180, 0f);
     }
 
-    void modifyPhysics()
+    private void modifyPhysics()
     {
-        bool changingDirections = (direction.x > 0 && rb.velocity.x < 0) || (direction.x < 0 && rb.velocity.x > 0);
-        
-
-        if (onGround)
+        if (rb.velocity.y > 2 || rb.velocity.y < -2 || rb.velocity.y == 0)
         {
-            if (Math.Abs(direction.x) < 0.4f || changingDirections)
-            {
-                rb.drag = linearDrag;
-            }
-            else
-            {
-                rb.drag = 0;
-            }
+            rb.drag = 0f;
 
-            rb.gravityScale = 0;
-        }
-        else
-        {    
-            if (rb.velocity.y < 0)
-            {
-                if (longJump)
-                {
-                    rb.gravityScale += (fallMultiplier * 3);
-                }
-                rb.gravityScale += fallMultiplier;
-                rb.gravityScale = Mathf.Clamp(rb.gravityScale, gravity, maxGravity);
-
-            }else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
-            {
-                //short jump
-                longJump = false;
-                rb.gravityScale += fallMultiplier;
-                rb.gravityScale = Mathf.Clamp(rb.gravityScale, gravity, maxGravity);
-            }
-            else
-            {
-                //high jump
-                longJump = true;
-                rb.gravityScale = gravity;
-                rb.gravityScale = Mathf.Clamp(rb.gravityScale, gravity, maxGravity);
-                rb.drag = linearDrag * 0.15f;
-            }
-
-        
+        }else
+        {
+            rb.drag = 3f;
         }
     }
-
 
     public void SetParent(Transform newParent)
     {
