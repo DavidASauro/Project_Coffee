@@ -12,39 +12,47 @@ public class PlayerInput : MonoBehaviour
 
     {
         player.direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        
+        player.moveDirection = Input.GetAxisRaw("Horizontal");
+
+        player.movement();
+
         //Getting input for Jump and jumping
-        if (Input.GetButtonDown("Jump") && player.onGround)
-        {
-            player.jumped = true;
-        }
+
 
         //cheking for attack button press
         if (Input.GetButtonDown("Fire1"))
         {
             Debug.Log("Shoot");
-            //wtv the fuck
+            
         }
+        /*
+                       //Getting the input for left or right movement and using appropriate function
+                       if (Input.GetAxisRaw("Horizontal") < 0)
+                       {
+                           player.moveLeft(player.direction.x);
 
-        //Getting the input for left or right movement and using appropriate function
-        if (Input.GetAxisRaw("Horizontal") < 0)
+
+                       }
+                       else if (Input.GetAxisRaw("Horizontal") > 0)
+                       {
+                           player.moveRight(player.direction.x);
+                       }
+               */
+
+        if (Input.GetButtonDown("Jump") && player.onGround)
         {
-            player.moveLeft(player.direction.x);
-
-
+            player.jumped = true;
         }
-        else if (Input.GetAxisRaw("Horizontal") > 0)
-        {
-            player.moveRight(player.direction.x);
-        }
+
     }
 
-     void FixedUpdate()
+    void FixedUpdate()
     {
-        
+
         if (player.jumped)
         {
-               player.jump();
+            player.jumped = false;
+            player.jump();
         }
     }
 

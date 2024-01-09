@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     internal PlayerInput inputScript;
 
+    public Transform launchOffset;
+
     public Vector2 direction;
     Rigidbody2D rb;
     private Transform originalParent;
@@ -17,12 +20,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     public bool movingLeft = false;
     public bool movingRight = false;
+    public float moveDirection;
     public float speedMultiplier = 10f;
     public float maxSpeed = 7f;
-    public float linearDrag = 4f;
-    public float fallMultiplier = 5f;
-    public float gravity = 1f;
-    public float maxGravity = 50f;
 
     [Header("Animations")]
     public Animator animator;
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jumping")]
     public float jumpSpeed = 2f;
     public bool jumped = false;
-    
+
 
     [Header("Collisions")]
     public bool onGround;
@@ -52,12 +52,15 @@ public class PlayerMovement : MonoBehaviour
     void Update()
 
     {
-        onGround = Physics2D.BoxCast(coll.bounds.center,coll.bounds.size,0f,Vector2.down,0.1f,mask);
+
+        onGround = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, mask);
+
 
         //play the annimations
         modifyPhysics();
         animations();
     }
+
 
     private void OnDrawGizmos()
     {
@@ -78,21 +81,22 @@ public class PlayerMovement : MonoBehaviour
 
     public void jump()
     {
-        
+
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
-        jumped = false;
+
     }
 
+    /*
      public void moveRight(float movespeed)
     {
        
         movingRight = true;
         movingLeft = false;
 
-        if (Math.Abs(rb.velocity.x) >= maxSpeed)
+        if (Math.Abs(rb.velocity.x) > maxSpeed)
         {
-            rb.velocity.Set(Math.Clamp(rb.velocity.x, 0f, maxSpeed), rb.velocity.y);
+            rb.velocity.Set(Math.Clamp(rb.velocity.x, 0f, maxSpeed), 0f);
         }
         else
         {
@@ -115,9 +119,9 @@ public class PlayerMovement : MonoBehaviour
         movingLeft = true;
         movingRight = false;
 
-        if (Math.Abs(rb.velocity.x) >= maxSpeed)
+        if (Math.Abs(rb.velocity.x) > maxSpeed)
         {
-            rb.velocity.Set(Math.Clamp(rb.velocity.x, -maxSpeed, 0f), rb.velocity.y);
+            rb.velocity.Set(Math.Clamp(rb.velocity.x, -maxSpeed, 0f), 0f);
         }
         else
         {
@@ -130,8 +134,17 @@ public class PlayerMovement : MonoBehaviour
         }
          
     }
+    */
+    public void movement()
+    {
+        rb.velocity = new Vector2(moveDirection * speedMultiplier, rb.velocity.y);
 
+        if ((moveDirection > 0 && !facingRight) || (moveDirection < 0 && facingRight))
+        {
+            flipCharacter();
+        }
 
+    }
 
     public void flipCharacter()
     {
@@ -141,13 +154,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void modifyPhysics()
     {
-        if (rb.velocity.y > 2 || rb.velocity.y < -2 || rb.velocity.y == 0)
+        if (rb.velocity.y > 1 || rb.velocity.y < -1 || rb.velocity.y == 0)
         {
             rb.drag = 0f;
 
-        }else
+        }
+        else
         {
-            rb.drag = 3f;
+            rb.drag = 5f;
         }
     }
 
