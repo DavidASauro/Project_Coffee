@@ -328,15 +328,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputScript: {fileID: 126914030}
+  launchOffset: {fileID: 0}
   direction: {x: 0, y: 0}
   movingLeft: 1
   movingRight: 0
+  moveDirection: 0
   speedMultiplier: 10
   maxSpeed: 7
-  linearDrag: 4
-  fallMultiplier: 5
-  gravity: 1
-  maxGravity: 50
   animator: {fileID: 834332737}
   facingRight: 1
   jumpSpeed: 20
