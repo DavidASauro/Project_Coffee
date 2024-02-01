@@ -32,13 +32,15 @@ public class PlayerMovement : MonoBehaviour
     public float jumpSpeed = 2f;
     public bool jumped = false;
 
-
     [Header("Collisions")]
     public bool onGround;
     public LayerMask mask;
     public BoxCollider2D coll;
 
-
+    [Header("Player Stats")]
+    public float currentHealth = 10f;
+    public float maxHealth = 10f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -52,10 +54,13 @@ public class PlayerMovement : MonoBehaviour
     void Update()
 
     {
+        if (currentHealth == 0)
+        {
+            Debug.Log("I AM DEAD");
+        }
 
         onGround = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, mask);
-
-
+        
         //play the annimations
         modifyPhysics();
         animations();
@@ -175,8 +180,16 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.parent = originalParent;
     }
+    
+     private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
 
-
+        if (collision.gameObject.tag == "enemy")
+        {
+            currentHealth = currentHealth - 1;
+        }
+    }
 
 
 }
