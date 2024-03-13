@@ -92,54 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    /*
-     public void moveRight(float movespeed)
-    {
-       
-        movingRight = true;
-        movingLeft = false;
 
-        if (Math.Abs(rb.velocity.x) > maxSpeed)
-        {
-            rb.velocity.Set(Math.Clamp(rb.velocity.x, 0f, maxSpeed), 0f);
-        }
-        else
-        {
-            rb.AddForce(Vector2.right * speedMultiplier, ForceMode2D.Force);
-        }
-       
-
-        if ((movespeed > 0 && !facingRight) || (movespeed < 0 && facingRight))
-        {
-            flipCharacter();
-        }
-
-       
-    }
-
-   public void moveLeft(float movespeed)
-    {
-       
-
-        movingLeft = true;
-        movingRight = false;
-
-        if (Math.Abs(rb.velocity.x) > maxSpeed)
-        {
-            rb.velocity.Set(Math.Clamp(rb.velocity.x, -maxSpeed, 0f), 0f);
-        }
-        else
-        {
-            rb.AddForce(Vector2.left * speedMultiplier, ForceMode2D.Force);
-        }
-
-        if ((movespeed > 0 && !facingRight) || (movespeed < 0 && facingRight))
-        {
-            flipCharacter();
-        }
-         
-    }
-    */
     public void movement()
     {
         rb.velocity = new Vector2(moveDirection * speedMultiplier, rb.velocity.y);
@@ -181,10 +134,9 @@ public class PlayerMovement : MonoBehaviour
         transform.parent = originalParent;
     }
     
-     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         if (collision.gameObject.tag == "enemy")
         {
             currentHealth = currentHealth - 1;
