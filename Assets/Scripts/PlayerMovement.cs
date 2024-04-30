@@ -32,13 +32,15 @@ public class PlayerMovement : MonoBehaviour
     public float jumpSpeed = 2f;
     public bool jumped = false;
 
-
     [Header("Collisions")]
     public bool onGround;
     public LayerMask mask;
     public BoxCollider2D coll;
 
-
+    [Header("Player Stats")]
+    public float currentHealth = 10f;
+    public float maxHealth = 10f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -52,10 +54,13 @@ public class PlayerMovement : MonoBehaviour
     void Update()
 
     {
+        if (currentHealth == 0)
+        {
+            Debug.Log("I AM DEAD");
+        }
 
         onGround = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, mask);
-
-
+        
         //play the annimations
         modifyPhysics();
         animations();
@@ -87,54 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    /*
-     public void moveRight(float movespeed)
-    {
-       
-        movingRight = true;
-        movingLeft = false;
 
-        if (Math.Abs(rb.velocity.x) > maxSpeed)
-        {
-            rb.velocity.Set(Math.Clamp(rb.velocity.x, 0f, maxSpeed), 0f);
-        }
-        else
-        {
-            rb.AddForce(Vector2.right * speedMultiplier, ForceMode2D.Force);
-        }
-       
-
-        if ((movespeed > 0 && !facingRight) || (movespeed < 0 && facingRight))
-        {
-            flipCharacter();
-        }
-
-       
-    }
-
-   public void moveLeft(float movespeed)
-    {
-       
-
-        movingLeft = true;
-        movingRight = false;
-
-        if (Math.Abs(rb.velocity.x) > maxSpeed)
-        {
-            rb.velocity.Set(Math.Clamp(rb.velocity.x, -maxSpeed, 0f), 0f);
-        }
-        else
-        {
-            rb.AddForce(Vector2.left * speedMultiplier, ForceMode2D.Force);
-        }
-
-        if ((movespeed > 0 && !facingRight) || (movespeed < 0 && facingRight))
-        {
-            flipCharacter();
-        }
-         
-    }
-    */
     public void movement()
     {
         rb.velocity = new Vector2(moveDirection * speedMultiplier, rb.velocity.y);
@@ -175,8 +133,15 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.parent = originalParent;
     }
+    
 
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "enemy")
+        {
+            currentHealth = currentHealth - 1;
+        }
+    }
 
 
 }
