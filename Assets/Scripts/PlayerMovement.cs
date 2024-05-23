@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     [SerializeField]
     internal PlayerInput inputScript;
 
@@ -54,11 +56,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
 
     {
-        if (currentHealth == 0)
-        {
-            Debug.Log("I AM DEAD");
-        }
-
         onGround = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, mask);
         
         //play the annimations
