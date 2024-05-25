@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     private Transform originalParent;
 
+    public Transform SpawnPoint;
+
     [Header("Movement")]
     public bool movingLeft = false;
     public bool movingRight = false;
@@ -140,5 +142,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void resetToSpawnPoint()
+    {
+        transform.position = SpawnPoint.position;
+        transform.rotation = SpawnPoint.rotation;
+    }
 
 }

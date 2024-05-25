@@ -35,13 +35,14 @@ public class GameManager : MonoBehaviour
         {
             //pause game here...
             UserInterface.SetActive(true);
-            player.currentHealth = player.maxHealth;
+            resetPlayer();
         }
     }
 
     void resetPlayer()
     {
-
+        player.currentHealth = player.maxHealth;
+        player.resetToSpawnPoint();
     }
 
 
