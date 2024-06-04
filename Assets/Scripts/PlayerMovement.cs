@@ -19,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     private Transform originalParent;
 
-    public Transform SpawnPoint;
 
     [Header("Movement")]
     public bool movingLeft = false;
@@ -38,28 +37,35 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Collisions")]
     public bool onGround;
+    public bool hitDeathBox;
     public LayerMask mask;
+    public LayerMask deathMask;
     public BoxCollider2D coll;
 
     [Header("Player Stats")]
     public float currentHealth = 10f;
     public float maxHealth = 10f;
+    public bool isDead = false;
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
+        
 
         originalParent = transform.parent;
     }
+
 
     // Update is called once per frame
     void Update()
 
     {
         onGround = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, mask);
-        
+        hitDeathBox = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, deathMask);
+ 
+
         //play the annimations
         modifyPhysics();
         animations();
@@ -140,12 +146,15 @@ public class PlayerMovement : MonoBehaviour
         {
             currentHealth = currentHealth - 1;
         }
+        
     }
 
-    public void resetToSpawnPoint()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        transform.position = SpawnPoint.position;
-        transform.rotation = SpawnPoint.rotation;
+        if (collision.gameObject.tag == "deathBox")
+        {
+            currentHealth = currentHealth - maxHealth;
+        }
     }
 
 }

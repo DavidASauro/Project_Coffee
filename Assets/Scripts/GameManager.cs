@@ -31,9 +31,9 @@ public class GameManager : MonoBehaviour
 
     void checkPlayerHealth()
     {
-        if (player.currentHealth == 0)
+        if (player.currentHealth <= 0)
         {
-            //pause game here...
+            Time.timeScale = 0;
             UserInterface.SetActive(true);
             resetPlayer();
         }
@@ -42,9 +42,10 @@ public class GameManager : MonoBehaviour
     void resetPlayer()
     {
         player.currentHealth = player.maxHealth;
-        player.resetToSpawnPoint();
-    }
+        player.isDead = false;
+        
 
+    }
 
 }
 

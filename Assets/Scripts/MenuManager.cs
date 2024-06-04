@@ -3,38 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Build.Content;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
+
 {
-    /*
-    void Awake()
+    public GameObject interfaceThing;
+    public void startGame()
     {
-        GameManager.OnStateChange += GameManagerMenuChange;
+        SceneManager.LoadScene("UnderWorld01");
     }
-
-    void OnDestroy()
+    public void playAgain()
     {
-        GameManager.OnStateChange -= GameManagerMenuChange;
-    }
+        SceneManager.LoadScene("UnderWorld01");
 
-    private void GameManagerMenuChange(GameState state)
-    {
-        if (state == GameState.MainMenuState)
+        if (interfaceThing != null)
         {
-
-        }  
+            Time.timeScale = 1;
+            interfaceThing.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("No GameObject");
+        }
     }
-
-    // Start is called before the first frame update
-    void Start()
+    public void quitGamne()
     {
-        
+        Application.Quit();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    */
 }
