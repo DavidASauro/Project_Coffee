@@ -99,9 +99,10 @@ public class EnemyAI : MonoBehaviour
         if (isAggroed)
         {
             if (TargetInDistance() && followEnabled)
-                    {
+            {
                         PathFollow();
-                    }
+            
+            }
 
         }
 
