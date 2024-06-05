@@ -510,6 +510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileWeaponPoint: {fileID: 993152655}
   projectilePrefab: {fileID: 1103846969531389206, guid: 8b2de374e3d444640b3eb36078e003fe, type: 3}
+  projectileDmg: 1
 --- !u!1 &209372926
 GameObject:
   m_ObjectHideFlags: 0
@@ -3870,6 +3871,7 @@ GameObject:
   - component: {fileID: 1928200698}
   - component: {fileID: 1928200697}
   - component: {fileID: 1928200700}
+  - component: {fileID: 1928200701}
   m_Layer: 0
   m_Name: testDMG
   m_TagString: enemy
@@ -4002,6 +4004,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  currentHealth: 0
+  healthBar: {fileID: 0}
+--- !u!95 &1928200701
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928200696}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 375903ee4ef45b349a5295726d72e73b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1951173711
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ public class EnemyAI : MonoBehaviour
     public Transform target;
     public float activateDistance = 50f;
     public float pathUpdateSeconds = 0.5f;
+    public float aggroDistance = 5f;
+    public bool isAggroed = false;
 
     [Header("Physics")]
     public float speed = 200f;
@@ -16,12 +18,17 @@ public class EnemyAI : MonoBehaviour
     public float jumpNodeHeightRequirement = 0.8f;
     public float jumpModifier = 0.3f;
     public float jumpCheckOffset = 0.1f;
+    public bool facingRight = true;
 
     [Header("Custom Behavior")]
     public bool followEnabled = true;
     public bool jumpEnabled = true;
     public bool directionLookEnabled = true;
     public bool hasLedgeDetection = true;
+    public bool flyingEnemy = false;
+    private bool patrollingEnemy = false;
+    public bool isPatrollingEnemy = false;
+
 
     [Header("Ledge Detection")]
     public Transform ledgeDetector;
@@ -44,18 +51,74 @@ public class EnemyAI : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         GameObject player = GameObject.Find("Player");
         target = player.transform;
+
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
+        
+        //adjusting parameters for flying enemies
+        if (flyingEnemy)
+        {
+            jumpEnabled = false;
+            rb.gravityScale = 0f;
+            rb.drag = 2f;
+        }
     }
+    public void Update()
+    {
+        if (patrollingEnemy)
+        {
+            RaycastHit2D ledgehit = Physics2D.Raycast(ledgeDetector.position, Vector2.down, raycastDistance, groundLayer);
 
-     
-
+            if (ledgehit.collider == null)
+            {
+                rotateEnemy();
+            }
+        }
+        
+    }
+    
 
     public void FixedUpdate()
     {
-        if (TargetInDistance() && followEnabled)
+      
+        //making the enemy aggro to player if player enters the aggro range of the enemy
+        if (Vector2.Distance(transform.position, target.transform.position) < aggroDistance)
         {
-            PathFollow();
+            isAggroed = true;
+            patrollingEnemy = false;
+            jumpEnabled = true;
         }
+        //adjusting aggro is player escapes enemy follow range
+        if (!TargetInDistance() && isPatrollingEnemy)
+        {
+            isAggroed=false;
+            patrollingEnemy=true;
+            jumpEnabled = false;
+         
+        }
+
+        if (isAggroed)
+        {
+            if (TargetInDistance() && followEnabled)
+                    {
+                        PathFollow();
+                    }
+
+        }
+
+        if (patrollingEnemy)
+        {
+            
+            if (facingRight)
+            {
+                rb.velocity = new Vector2(1, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(-1, rb.velocity.y);
+            }
+            
+        }
+       
     }
 
     private void UpdatePath()
@@ -82,7 +145,8 @@ public class EnemyAI : MonoBehaviour
 
         //See if colliding with anything
         RaycastHit2D isGrounded = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0, Vector2.down, 0.1f, jumpableGround);
-        RaycastHit2D hit = Physics2D.Raycast(ledgeDetector.position, Vector2.down, raycastDistance, groundLayer);
+        RaycastHit2D ledgehit = Physics2D.Raycast(ledgeDetector.position, Vector2.down, raycastDistance, groundLayer);
+
 
         //Direction Calculation
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
@@ -94,7 +158,7 @@ public class EnemyAI : MonoBehaviour
                              target.position.y > rb.position.y + 1.0f;
 
         //Jump Logic
-        if ((jumpEnabled && isGrounded && hit.collider == null) || (jumpEnabled && isGrounded && isPlayerAbove) )
+        if ((jumpEnabled && isGrounded && ledgehit.collider == null) || (jumpEnabled && isGrounded && isPlayerAbove) )
         {
             if(direction.y > jumpNodeHeightRequirement)
             {
@@ -103,9 +167,8 @@ public class EnemyAI : MonoBehaviour
         }
 
         //ledge Detection
-        if (hit.collider == null && isGrounded && direction.y < jumpNodeHeightRequirement && hasLedgeDetection)
+        if (ledgehit.collider == null && isGrounded && direction.y < jumpNodeHeightRequirement && hasLedgeDetection)
         {
-            Debug.Log("NO GROUND");
             force = direction * 0;
             rb.velocity = Vector2.zero;
             
@@ -124,13 +187,13 @@ public class EnemyAI : MonoBehaviour
         //Directional GFX handling
         if (directionLookEnabled)
         {
-            if(rb.velocity.x > 0.05f)
+            if(rb.velocity.x > 0.05f && !facingRight)
             {
-                transform.localScale = new Vector3(-1f * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-
-            }else if (rb.velocity.x < -0.05f)
+                rotateEnemy();
+                
+            }else if (rb.velocity.x < -0.05f && facingRight)
             {
-                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                rotateEnemy();
             }
         }
 
@@ -148,5 +211,11 @@ public class EnemyAI : MonoBehaviour
             path = p;
             currentWaypoint = 0;
         }
+    }
+
+    private void rotateEnemy()
+    {
+        transform.Rotate(0,180,0);
+        facingRight = !facingRight;
     }
 }
