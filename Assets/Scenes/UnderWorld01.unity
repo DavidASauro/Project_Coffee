@@ -3230,7 +3230,7 @@ MonoBehaviour:
   speed: 300
   nextWayPointDistance: 1
   jumpNodeHeightRequirement: 0.1
-  jumpModifier: 0.6
+  jumpModifier: 1
   jumpCheckOffset: 0.6
   facingRight: 1
   followEnabled: 1
