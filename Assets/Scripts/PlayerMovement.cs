@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
+using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
@@ -30,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Animations")]
     public Animator animator;
     public bool facingRight = true;
+    public SpriteRenderer sprite;
+    public float flashInterval;
+    private Coroutine flashCoroutine;
 
     [Header("Jumping")]
     public float jumpSpeed = 2f;
@@ -46,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
     public float currentHealth = 10f;
     public float maxHealth = 10f;
     public bool isDead = false;
+    private bool isInvincible = false;
+    public float invincibilityDurationSeconds = 2f;
     
     // Start is called before the first frame update
     void Start()
@@ -144,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "enemy")
         {
-            currentHealth = currentHealth - 1;
+            takeDamage(1);
         }
         
     }
@@ -153,8 +159,69 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "deathBox")
         {
+
             currentHealth = currentHealth - maxHealth;
+
         }
     }
+
+    public void takeDamage(float dmg)
+    {
+        //if the player is invincible do not take dmg
+        if (isInvincible)
+        {
+            return;
+        }
+        currentHealth = currentHealth - dmg;
+
+        //If player takes dmg and still has health start the i-frame coroutine
+        if (currentHealth > 0)
+        {
+            StartCoroutine(startInvicibility());
+        } 
+
+    }
+
+    private IEnumerator startInvicibility()
+    {
+        isInvincible = true;
+
+        if (sprite != null)
+        {
+            flashCoroutine = StartCoroutine(flashSprite());
+        }
+
+        sprite.color = Color.red;
+
+        yield return new WaitForSeconds(invincibilityDurationSeconds);
+
+        isInvincible = false;
+
+        if (flashCoroutine != null)
+        {
+            StopCoroutine(flashCoroutine);
+            sprite.color = Color.white;
+        }
+
+        
+    }
+
+    private IEnumerator flashSprite()
+    {
+        Color originalColor = sprite.color;
+        Color flashColor = Color.red;
+
+        while (isInvincible)
+        {
+            sprite.color = flashColor;
+            yield return new WaitForSeconds(flashInterval);
+            sprite.color = originalColor;
+            yield return new WaitForSeconds(flashInterval);
+        }
+
+        sprite.color = originalColor;
+    }
+
+
 
 }
