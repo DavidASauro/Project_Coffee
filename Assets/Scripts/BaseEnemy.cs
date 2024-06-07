@@ -6,19 +6,23 @@ using UnityEngine;
 public class BaseEnemy : MonoBehaviour
 {
     public float health = 10f;
+    public float currentHealth;
+    public HealthBar healthBar;
     
 
     // Start is called before the first frame update
     void Start()
     {
-      
+        currentHealth = health;
+        healthBar.SetMaxHealthBar(health);
+
     
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (health == 0)
+        if (currentHealth == 0)
         {
             Destroy(gameObject);
         }
@@ -29,8 +33,10 @@ public class BaseEnemy : MonoBehaviour
         
         if (collision.gameObject.CompareTag("projectile"))
         {
-            
-            health -= collision.gameObject.GetComponent<ProjectileMovement>().dmg;
+            currentHealth -=  collision.gameObject.GetComponent<ProjectileMovement>().dmg;
+            healthBar.adjustHealthBar(currentHealth);
+
         }
+        
     }
 }

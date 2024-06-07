@@ -14,7 +14,8 @@ public class ProjectileMovement : MonoBehaviour
     void Start()
     {
      
-        body.velocity = transform.right * speed;
+       body.velocity = transform.right * speed;
+       
     }
 
     // Update is called once per frame
