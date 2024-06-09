@@ -7,7 +7,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public PlayerMovement player;
+    public PlayerController player;
     public GameObject UserInterface;
 
     private void Awake()
@@ -25,11 +25,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       checkPlayerHealth();
+       //checkPlayerHealth();
     }
 
 
-    void checkPlayerHealth()
+    /*void checkPlayerHealth()
     {
         if (player.currentHealth <= 0)
         {
@@ -37,12 +37,12 @@ public class GameManager : MonoBehaviour
             UserInterface.SetActive(true);
             resetPlayer();
         }
-    }
+    }*/
 
     void resetPlayer()
     {
-        player.currentHealth = player.maxHealth;
-        player.isDead = false;
+       /* player.currentHealth = player.maxHealth;
+        player.isDead = false;*/
         
 
     }
