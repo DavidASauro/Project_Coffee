@@ -15,28 +15,20 @@ public class BaseEnemy : MonoBehaviour
     {
         currentHealth = health;
         healthBar.SetMaxHealthBar(health);
-
-    
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(float dmg)
     {
-        if (currentHealth == 0)
-        {
-            Destroy(gameObject);
+        currentHealth -= dmg;
+        healthBar.adjustHealthBar(currentHealth);
+        if (currentHealth <= 0) {
+            Die();
         }
+
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {   
-        
-        if (collision.gameObject.CompareTag("projectile"))
-        {
-            currentHealth -=  collision.gameObject.GetComponent<ProjectileMovement>().dmg;
-            healthBar.adjustHealthBar(currentHealth);
-
-        }
-        
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }
