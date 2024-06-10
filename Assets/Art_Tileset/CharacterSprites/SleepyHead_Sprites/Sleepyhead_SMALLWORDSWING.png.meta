@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: eca3b61667792fd4ebd9ca32ac61414f
+guid: 7f7df84bc65a820428bb64723653a954
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,43 +110,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sleepyhead_WALKING-Sheet_0
+      name: Sleepyhead_SMALLWORDSWING_0
       rect:
         serializedVersion: 2
-        x: 20
+        x: 19
         y: 32
-        width: 8
+        width: 10
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b39aaa52d00cef543936619bdc1928bb
-      internalID: -1068408632
+      spriteID: ac149ffe46ce74d47a1a55f9a18b233f
+      internalID: -960679377
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sleepyhead_WALKING-Sheet_1
+      name: Sleepyhead_SMALLWORDSWING_1
       rect:
         serializedVersion: 2
-        x: 84
+        x: 83
         y: 32
-        width: 9
+        width: 12
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: efdae191aa11fd34a84d78cc06277e36
-      internalID: 1934794558
+      spriteID: f191c93df40ad36448a9f3b0a0112656
+      internalID: 566996482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sleepyhead_SMALLWORDSWING_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 32
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab3290a801280bd45a685d4924b335bf
+      internalID: -1134460399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sleepyhead_SMALLWORDSWING_3
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 32
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a169d1ef264cb74099d320c8a023ff9
+      internalID: 1992220458
       vertices: []
       indices: 
       edges: []
@@ -162,8 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sleepyhead_WALKING-Sheet_0: -1068408632
-      Sleepyhead_WALKING-Sheet_1: 1934794558
+      Sleepyhead_SMALLWORDSWING_0: -960679377
+      Sleepyhead_SMALLWORDSWING_1: 566996482
+      Sleepyhead_SMALLWORDSWING_2: -1134460399
+      Sleepyhead_SMALLWORDSWING_3: 1992220458
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
