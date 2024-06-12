@@ -2,7 +2,7 @@ name: Feature request
 description: Suggest a new feature for the 2D game
 title: "[Feature Request] "
 labels: ["enhancement", "feature request"]
-assignees: ''
+assignees: []
 
 body:
   - type: markdown
