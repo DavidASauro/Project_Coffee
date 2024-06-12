@@ -2,7 +2,7 @@ name: Feature request
 description: Suggest a new feature for the 2D game
 title: "[Feature Request] "
 labels: ["enhancement", "feature request"]
-assignees: []
+assignees: ''
 
 body:
   - type: markdown
@@ -52,12 +52,19 @@ body:
       description: What parts of the game would this feature affect? Select all that apply.
       options:
         - label: Gameplay Mechanics
+          value: gameplay_mechanics
         - label: User Interface
+          value: user_interface
         - label: Graphics/Visuals
+          value: graphics_visuals
         - label: Audio/Music
+          value: audio_music
         - label: Story/Plot
+          value: story_plot
         - label: Multiplayer/Networking
+          value: multiplayer_networking
         - label: Other
+          value: other
 
   - type: dropdown
     id: priority
@@ -66,5 +73,8 @@ body:
       description: How important is this feature to you?
       options:
         - label: Low
+          value: low
         - label: Medium
+          value: medium
         - label: High
+          value: high
