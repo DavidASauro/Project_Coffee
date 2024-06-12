@@ -51,20 +51,14 @@ body:
       label: Game Aspects Affected
       description: What parts of the game would this feature affect? Select all that apply.
       options:
-        - label: Gameplay Mechanics
-          value: gameplay_mechanics
-        - label: User Interface
-          value: user_interface
-        - label: Graphics/Visuals
-          value: graphics_visuals
-        - label: Audio/Music
-          value: audio_music
-        - label: Story/Plot
-          value: story_plot
-        - label: Multiplayer/Networking
-          value: multiplayer_networking
+        - label: Gameplay Mechanics          
+        - label: User Interface          
+        - label: Graphics/Visuals          
+        - label: Audio/Music          
+        - label: Story/Plot         
+        - label: Multiplayer/Networking          
         - label: Other
-          value: other
+          
 
   - type: dropdown
     id: priority
@@ -72,9 +66,7 @@ body:
       label: Priority Level
       description: How important is this feature to you?
       options:
-        - label: Low
-          value: low
-        - label: Medium
-          value: medium
+        - label: Low        
+        - label: Medium       
         - label: High
-          value: high
+          
