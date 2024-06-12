@@ -66,6 +66,6 @@ body:
       label: Priority Level
       description: How important is this feature to you?
       options:
-        - label: Low        
-        - label: Medium       
-        - label: High
+        - Low        
+        - Medium       
+        - High
