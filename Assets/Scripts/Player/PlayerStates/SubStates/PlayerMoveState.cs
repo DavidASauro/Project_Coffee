@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMoveState : PlayerGroundedState
 {
+    public bool isMoving;
     public PlayerMoveState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName)
     {
     }
@@ -17,11 +18,13 @@ public class PlayerMoveState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
+        isMoving = true;
     }
 
     public override void Exit()
     {
         base.Exit();
+        isMoving = false;
     }
 
     public override void LogicUpdate()

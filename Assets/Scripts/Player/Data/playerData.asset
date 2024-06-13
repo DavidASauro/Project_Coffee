@@ -25,5 +25,6 @@ MonoBehaviour:
   wallCheckDistance: 0.4
   coyoteTime: 0.2
   variableJumpHeightMultiplier: 0.5
-  dashSpeed: 10
+  dashSpeed: 500
+  dashCoolDown: 0.5
   amountOfDashes: 2

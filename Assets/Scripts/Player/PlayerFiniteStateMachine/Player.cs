@@ -136,7 +136,8 @@ public class Player : MonoBehaviour
 
     public void AddForceX(float xForce)
     {
-        RB.AddForce(new Vector2(xForce * FacingDirection,RB.velocity.y), ForceMode2D.Impulse);
+        RB.AddForce(new Vector2(xForce * FacingDirection,CurrentVelocity.y), ForceMode2D.Force);
+        
     }
     private void AnimationTrigger()=> StateMachine.CurrentState.AnimationTrigger();
 

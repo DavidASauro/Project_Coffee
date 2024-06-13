@@ -49,7 +49,8 @@ public class PlayerGroundedState : State
         {
             player.InAirState.StartCoyoteTime();
             stateMachine.ChangeState(player.InAirState);
-        }else if (DashInput && player.DashState.canDash())
+
+        }else if (DashInput && player.DashState.CheckIfCanDash())
         {
             stateMachine.ChangeState(player.DashState);
             

@@ -28,7 +28,9 @@ public class PlayerData : ScriptableObject
 
     [Header("Abilities")]
     public float dashSpeed = 5f;
+    public float dashCoolDown = 0.5f;
     public int amountOfDashes = 1;
+    
 
 
 }

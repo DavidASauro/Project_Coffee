@@ -16,6 +16,7 @@ public class PlayerInputHandler : MonoBehaviour
     private float inputHoldTime = 0.2f;
 
     private float jumpInputStartTime;
+    private float dashInputStartTime;
 
     private void Update()
     {
@@ -49,6 +50,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             DashInput = true;
+            dashInputStartTime = Time.time;
         }
     }
 
@@ -61,6 +63,10 @@ public class PlayerInputHandler : MonoBehaviour
         if(Time.time >= jumpInputStartTime + inputHoldTime)
         {
             JumpInput = false;
+        }
+        if (Time.time >= dashInputStartTime + inputHoldTime)
+        {
+            DashInput = false;
         }
     }
 

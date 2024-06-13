@@ -7,6 +7,7 @@ public class PlayerAbilityState : State
 
     protected bool isAbilityDone;
     protected bool isGrounded;
+    
     public PlayerAbilityState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName)
     {
     }
@@ -20,7 +21,7 @@ public class PlayerAbilityState : State
     public override void Enter()
     {
         base.Enter();
-
+        
         isAbilityDone = false;
     }
 
@@ -35,9 +36,12 @@ public class PlayerAbilityState : State
 
         if (isAbilityDone)
         {
-            if (isGrounded && player.CurrentVelocity.y < 0.01f )//&& player.CurrentVelocity.x < 0.01f)
+            if (isGrounded && player.CurrentVelocity.y < 0.01f)
             {
                 stateMachine.ChangeState(player.IdleState);
+            }else if (isGrounded && player.MoveState.isMoving)
+            {
+                stateMachine.ChangeState(player.MoveState);
             }
             else
             {

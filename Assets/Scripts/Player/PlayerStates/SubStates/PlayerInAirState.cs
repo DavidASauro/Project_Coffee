@@ -12,6 +12,7 @@ public class PlayerInAirState : State
     private bool isJumping;
     private bool JumpInputStop;
     private bool isThouchingWall;
+    private bool dashInput;
     public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName)
     {
     }
@@ -21,6 +22,7 @@ public class PlayerInAirState : State
         base.DoChecks();
         isGrounded = player.CheckIfGrounded();
         isThouchingWall = player.CheckIfTouchingWall();
+
     }
 
     public override void Enter()
@@ -42,6 +44,7 @@ public class PlayerInAirState : State
         xInput = player.InputHandler.NormalizedInputX;
         jumpInput = player.InputHandler.JumpInput;
         JumpInputStop = player.InputHandler.JumpInputStop;
+        dashInput = player.InputHandler.DashInput;
 
         CheckJumpMultiplier();
 
@@ -52,14 +55,27 @@ public class PlayerInAirState : State
         {
             player.InputHandler.UseJumpInput();
             stateMachine.ChangeState(player.JumpState);
+
         }else if (isThouchingWall && xInput == player.FacingDirection)
         {
             stateMachine.ChangeState(player.WallSlideState);
-        }
-        else
+        }else if (dashInput && player.DashState.CheckIfCanDash())
         {
-            player.CheckIfShouldFlip(xInput);
-            player.SetVelocityX(playerData.movementSpeed * xInput);
+            
+            stateMachine.ChangeState(player.DashState);
+        }
+        else if (player.DashState.isDashing)
+        {
+            if (isGrounded)
+            {
+                player.DashState.isDashing = false;
+            }
+            
+        }else
+        {
+           Debug.Log("Here");
+           player.CheckIfShouldFlip(xInput);
+           player.SetVelocityX(playerData.movementSpeed * xInput);
         }
     }
 
