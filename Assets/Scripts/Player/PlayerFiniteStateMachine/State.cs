@@ -11,6 +11,7 @@ public class State
     protected float startTime;
 
     protected bool isAnimationFinished;
+    protected bool isExitingState;
 
     private string animationBoolName;
 
@@ -29,12 +30,14 @@ public class State
         player.Anim.SetBool(animationBoolName, true);
         startTime = Time.time;
         isAnimationFinished = false;
+        isExitingState = false;
        
     }
 
     public virtual void Exit() 
     {
         player.Anim.SetBool(animationBoolName, false);
+        isExitingState = true;
     }
 
     //Called every frame

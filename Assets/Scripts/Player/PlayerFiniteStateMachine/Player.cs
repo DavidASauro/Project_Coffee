@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public PlayerInAirState InAirState { get; private set; }
     public PlayerWallSlideState WallSlideState { get; private set;}
     public PlayerDashState DashState { get; private set; }
+    public PlayerWallJumpState WallJumpState { get; private set; }
 
     [SerializeField]
     private PlayerData playerData;
@@ -56,6 +57,7 @@ public class Player : MonoBehaviour
         LandState = new PlayerLandState(this, StateMachine, playerData, "land");
         WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallslide");
         DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
+        WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
 
     }
 
@@ -86,6 +88,14 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Set Functions
+
+    public void SetVelocity(float veloctiy, Vector2 angle, int direction)
+    {
+        angle.Normalize();
+        workspace.Set(angle.x * veloctiy * direction, angle.y * veloctiy);
+        RB.velocity = workspace;
+        CurrentVelocity = workspace;
+    }
     public void SetVelocityX(float vel)
     {  
         workspace.Set(vel, CurrentVelocity.y);
@@ -113,6 +123,11 @@ public class Player : MonoBehaviour
     public bool CheckIfTouchingWall()
     {
         return Physics2D.Raycast(wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.groundMask);
+    }
+
+    public bool CheckIfTouchingWallBehind()
+    {
+        return Physics2D.Raycast(wallCheck.position, Vector2.right * -FacingDirection, playerData.wallCheckDistance, playerData.groundMask);
     }
     public void CheckIfShouldFlip(float Xinput)
     {

@@ -30,7 +30,10 @@ public class PlayerData : ScriptableObject
     public float dashSpeed = 5f;
     public float dashCoolDown = 0.5f;
     public int amountOfDashes = 1;
-    
 
+    [Header("Wall Jump State")]
+    public float wallJumpVelocity = 20f;
+    public float wallJumpTime = 0.4f;
+    public Vector2 wallJumpAngle = new Vector2(1, 2);
 
 }

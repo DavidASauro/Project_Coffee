@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: 2bcb3aae235adea4ea458206e45f7f7d
+=======
+guid: 27a6d79c811b4ba458087b1e88de94e5
+>>>>>>> Stashed changes
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -132,7 +136,11 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 15
+<<<<<<< Updated upstream
     spriteID: a22cfad748b520640ba2cc0cfc840c4a
+=======
+    spriteID: 571c63945e0ca4345b82fd3079675b69
+>>>>>>> Stashed changes
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -152,7 +160,11 @@ ScriptedImporter:
       y: 4
       width: 20
       height: 10
+<<<<<<< Updated upstream
     spriteID: 914a5e5daa5905b4eb7e9009aa1e8d1f
+=======
+    spriteID: a2733239cbb84054bb50157092a718cf
+>>>>>>> Stashed changes
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -172,7 +184,11 @@ ScriptedImporter:
       y: 27
       width: 10
       height: 18
+<<<<<<< Updated upstream
     spriteID: 3a3c24871d6c64040acb3b075293a2c5
+=======
+    spriteID: 4ed4cdd405742514c918a4d3c39b936b
+>>>>>>> Stashed changes
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -192,7 +208,11 @@ ScriptedImporter:
       y: 27
       width: 12
       height: 18
+<<<<<<< Updated upstream
     spriteID: f02a9409cceebaf4d8cc582460be6734
+=======
+    spriteID: 8e0e7f56c92e4d54bafed83fa25f724f
+>>>>>>> Stashed changes
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -212,7 +232,11 @@ ScriptedImporter:
       y: 27
       width: 13
       height: 18
+<<<<<<< Updated upstream
     spriteID: 24db999935608e644ae770a17c5029a7
+=======
+    spriteID: 5bc3431914b62e74493ff6c9007ff23a
+>>>>>>> Stashed changes
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -238,7 +262,11 @@ ScriptedImporter:
         y: 32
         width: 16
         height: 15
+<<<<<<< Updated upstream
       spriteId: a22cfad748b520640ba2cc0cfc840c4a
+=======
+      spriteId: 571c63945e0ca4345b82fd3079675b69
+>>>>>>> Stashed changes
     - name: Sleepyhead_DEATHANIMATION_Frame_4
       frameIndex: 4
       additiveSortOrder: 0
@@ -247,7 +275,11 @@ ScriptedImporter:
         y: 28
         width: 20
         height: 10
+<<<<<<< Updated upstream
       spriteId: 914a5e5daa5905b4eb7e9009aa1e8d1f
+=======
+      spriteId: a2733239cbb84054bb50157092a718cf
+>>>>>>> Stashed changes
     - name: Sleepyhead_DEATHANIMATION_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
@@ -256,7 +288,11 @@ ScriptedImporter:
         y: 32
         width: 10
         height: 18
+<<<<<<< Updated upstream
       spriteId: 3a3c24871d6c64040acb3b075293a2c5
+=======
+      spriteId: 4ed4cdd405742514c918a4d3c39b936b
+>>>>>>> Stashed changes
     - name: Sleepyhead_DEATHANIMATION_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
@@ -265,7 +301,11 @@ ScriptedImporter:
         y: 32
         width: 12
         height: 18
+<<<<<<< Updated upstream
       spriteId: f02a9409cceebaf4d8cc582460be6734
+=======
+      spriteId: 8e0e7f56c92e4d54bafed83fa25f724f
+>>>>>>> Stashed changes
     - name: Sleepyhead_DEATHANIMATION_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
@@ -274,7 +314,11 @@ ScriptedImporter:
         y: 32
         width: 13
         height: 18
+<<<<<<< Updated upstream
       spriteId: 24db999935608e644ae770a17c5029a7
+=======
+      spriteId: 5bc3431914b62e74493ff6c9007ff23a
+>>>>>>> Stashed changes
     linkedCells: []
     parentIndex: -1
   platformSettings: []

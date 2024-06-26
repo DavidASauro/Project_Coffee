@@ -9,10 +9,16 @@ public class PlayerInAirState : State
     private int xInput;
     private bool jumpInput;
     private bool coyoteTime;
+    private bool wallJumpCoyoteTime;
+    private bool oldIsTouchingWall;
+    private bool oldIsTouchingWallBack;
     private bool isJumping;
     private bool JumpInputStop;
     private bool isThouchingWall;
     private bool dashInput;
+    private bool isTouchignWallBack;
+
+    private float startWallJumpCoyoteTime;
     public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName)
     {
     }
@@ -20,8 +26,18 @@ public class PlayerInAirState : State
     public override void DoChecks()
     {
         base.DoChecks();
+
+        oldIsTouchingWall = isThouchingWall;
+        oldIsTouchingWallBack = isTouchignWallBack;
+
         isGrounded = player.CheckIfGrounded();
         isThouchingWall = player.CheckIfTouchingWall();
+        isTouchignWallBack = player.CheckIfTouchingWallBehind();
+
+        if (!wallJumpCoyoteTime && !isThouchingWall && !isTouchignWallBack && (oldIsTouchingWall || oldIsTouchingWallBack))
+        {
+            StartWallJumpCoyoteTime();
+        }
 
     }
 
@@ -40,6 +56,7 @@ public class PlayerInAirState : State
         base.LogicUpdate();
 
         checkCoyoteTime();
+        checkWallJumpCoyoteTime();
 
         xInput = player.InputHandler.NormalizedInputX;
         jumpInput = player.InputHandler.JumpInput;
@@ -51,9 +68,16 @@ public class PlayerInAirState : State
         if (isGrounded && player.CurrentVelocity.y < 0.01f)
         {
             stateMachine.ChangeState(player.LandState);
-        }else if (jumpInput && player.JumpState.CanJump())
+        }else if (jumpInput && (isThouchingWall || isTouchignWallBack || wallJumpCoyoteTime))
         {
-            player.InputHandler.UseJumpInput();
+            StopWallJumpCoyoteTime();
+            isThouchingWall = player.CheckIfTouchingWall();
+            player.WallJumpState.DetermineWallJumpDirection(isThouchingWall);
+            stateMachine.ChangeState(player.WallJumpState);
+        }
+        else if (jumpInput && player.JumpState.CanJump())
+        {
+            
             stateMachine.ChangeState(player.JumpState);
 
         }else if (isThouchingWall && xInput == player.FacingDirection)
@@ -76,6 +100,9 @@ public class PlayerInAirState : State
            Debug.Log("Here");
            player.CheckIfShouldFlip(xInput);
            player.SetVelocityX(playerData.movementSpeed * xInput);
+
+            player.Anim.SetFloat("yVelocity", player.CurrentVelocity.y);
+            player.Anim.SetFloat("xVelocity", Mathf.Abs(player.CurrentVelocity.x));
         }
     }
 
@@ -109,11 +136,27 @@ public class PlayerInAirState : State
         }
     }
 
+    private void checkWallJumpCoyoteTime()
+    {
+        if(wallJumpCoyoteTime && Time.time > startWallJumpCoyoteTime + playerData.coyoteTime)
+        {
+            wallJumpCoyoteTime = false;
+        }
+    }
+
     public void StartCoyoteTime()
     {
         coyoteTime = true; 
     }
-
+    public void StartWallJumpCoyoteTime()
+    {
+        wallJumpCoyoteTime = true;
+        startWallJumpCoyoteTime = Time.time;
+    }
+    public void StopWallJumpCoyoteTime()
+    {
+        wallJumpCoyoteTime = false;
+    }
     public void SetIsJumping()
     {
         isJumping = true;
