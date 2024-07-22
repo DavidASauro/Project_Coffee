@@ -25,7 +25,7 @@ public class State
 
     public virtual void Enter()
     {
-        Debug.Log(animationBoolName);
+        //Debug.Log(animationBoolName);
         DoChecks();
         player.Anim.SetBool(animationBoolName, true);
         startTime = Time.time;
