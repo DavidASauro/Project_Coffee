@@ -97,7 +97,7 @@ public class PlayerInAirState : State
             
         }else
         {
-           Debug.Log("Here");
+           
            player.CheckIfShouldFlip(xInput);
            player.SetVelocityX(playerData.movementSpeed * xInput);
 

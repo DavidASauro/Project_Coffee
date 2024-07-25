@@ -1,0 +1,71 @@
+name: Feature request
+description: Suggest a new feature for the 2D game
+title: "[Feature Request] "
+labels: ["enhancement", "feature request"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature for our 2D game! Please fill out the form below to help us understand your idea better.
+
+  - type: input
+    id: feature_title
+    attributes:
+      label: Feature Title
+      description: A short and descriptive title for your feature request.
+      placeholder: "Add a new power-up item"
+
+  - type: textarea
+    id: feature_description
+    attributes:
+      label: Feature Description
+      description: A clear and concise description of what the feature is and why it would be useful.
+      placeholder: "Describe the new feature in detail, including what it does and how it benefits the game."
+
+  - type: textarea
+    id: feature_context
+    attributes:
+      label: Context and Inspiration
+      description: Explain any context or inspiration behind this feature. Are there similar features in other games?
+      placeholder: "Explain the background or reason for this feature."
+
+  - type: textarea
+    id: implementation_ideas
+    attributes:
+      label: Implementation Ideas
+      description: Do you have any ideas on how this feature could be implemented in the game?
+      placeholder: "Provide any ideas or suggestions on how to code or design this feature."
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: Additional Notes
+      description: Any other information you want to provide about this feature request.
+      placeholder: "Add any other notes or comments here."
+
+  - type: checkboxes
+    id: game_aspects_affected
+    attributes:
+      label: Game Aspects Affected
+      description: What parts of the game would this feature affect? Select all that apply.
+      options:
+        - label: Gameplay Mechanics          
+        - label: User Interface          
+        - label: Graphics/Visuals          
+        - label: Audio/Music          
+        - label: Story/Plot         
+        - label: Multiplayer/Networking          
+        - label: Other
+          
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature to you?
+      options:
+        - Low        
+        - Medium       
+        - High
