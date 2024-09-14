@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class PlayerGroundedState : State
     private bool JumpInput;
     private bool isGrounded;
     private bool DashInput;
+    private bool InteractInput;
     public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName)
     {
     }
@@ -25,21 +27,26 @@ public class PlayerGroundedState : State
         base.Enter();
         player.JumpState.ResetAmountOfJumpsLeft();
         player.DashState.ResetDash();
+        player.InputHandler.UseInteractInput();
+
     }
 
     public override void Exit()
     {
+        
         base.Exit();
+        
+
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-
         input = player.InputHandler.RawMovementInput;
         JumpInput = player.InputHandler.JumpInput;
         DashInput = player.InputHandler.DashInput;
+        InteractInput = player.InputHandler.InteractInput;
 
         if (JumpInput && player.JumpState.CanJump())
         {
@@ -53,6 +60,17 @@ public class PlayerGroundedState : State
         {
             stateMachine.ChangeState(player.DashState);
             
+        }else if (!player.CheckIfPlayerIsMoving() && InteractInput)
+        {
+            
+            Debug.Log("next level");
+            player.InputHandler.UseInteractInput();
+
+
+        }
+        else if (!player.CheckIfPlayerIsMoving())
+        {
+            //switch to other animation
         }
     }
 

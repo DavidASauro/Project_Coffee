@@ -43,7 +43,7 @@ public class State
     //Called every frame
     public virtual void LogicUpdate()
     {
-
+        
     }
 
     //called every fixed update

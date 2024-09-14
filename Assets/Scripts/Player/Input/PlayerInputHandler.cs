@@ -11,6 +11,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool JumpInput { get; private set; }
     public bool JumpInputStop { get; private set; }
     public bool DashInput { get; private set; }
+    public bool InteractInput { get; private set; }
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
@@ -54,9 +55,20 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnInteractInput(InputAction.CallbackContext context)
+    {
+       
+        if (context.started)
+        {
+            InteractInput = true;
+        }
+    }
+
     public void UseDash() => DashInput = false;
 
     public void UseJumpInput() => JumpInput = false;
+
+    public void UseInteractInput() => InteractInput = false;
 
     private void checkInputHoldTime()
     {

@@ -31,7 +31,6 @@ public class Entity : MonoBehaviour
 
     public virtual void Update()
     {
-        Debug.Log(fsm.currentState);
         fsm.currentState.LogicUpdate();
     }
 

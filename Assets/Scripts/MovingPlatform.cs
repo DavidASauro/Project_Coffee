@@ -57,10 +57,10 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        var playermovement = collision.gameObject.GetComponent<PlayerMovement>();
-        if (playermovement != null)
+        var player = collision.gameObject.GetComponent<Player>();
+        if (player != null)
         {
-            playermovement.SetParent(transform);
+            player.SetParent(transform);
         }
     }
 
@@ -68,10 +68,10 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        var playermovement = collision.gameObject.GetComponent<PlayerMovement>();
-        if (playermovement != null)
+        var player = collision.gameObject.GetComponent<Player>();
+        if (player != null)
         {
-            playermovement.ResetParent();
+            player.ResetParent();
         }
     }
 

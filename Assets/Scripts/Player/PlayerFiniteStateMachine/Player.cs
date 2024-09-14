@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public PlayerWallSlideState WallSlideState { get; private set;}
     public PlayerDashState DashState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
+    public PlayerInteractNextLevelState InteractNextLevelState { get; private set; }
 
     [SerializeField]
     private PlayerData playerData;
@@ -27,6 +28,8 @@ public class Player : MonoBehaviour
     public Animator Anim { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D RB { get; private set; }
+
+    private Transform originalParent;
     #endregion
 
     #region Check Transforms
@@ -42,6 +45,7 @@ public class Player : MonoBehaviour
     public int FacingDirection { get; private set; }
 
     private Vector2 workspace;
+    public bool AtEndOfLevel { get; private set; }
 
     #endregion
 
@@ -58,6 +62,7 @@ public class Player : MonoBehaviour
         WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallslide");
         DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
         WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
+        InteractNextLevelState = new PlayerInteractNextLevelState(this, StateMachine, playerData, "nextLevel");
 
     }
 
@@ -70,6 +75,7 @@ public class Player : MonoBehaviour
         FacingDirection = 1;
 
         StateMachine.Initialize(IdleState);
+        originalParent = transform.parent;
 
     }
 
@@ -77,8 +83,6 @@ public class Player : MonoBehaviour
     {   
         CurrentVelocity = RB.velocity;
         StateMachine.CurrentState.LogicUpdate();
-        
-  
     }
 
     private void FixedUpdate()
@@ -110,6 +114,18 @@ public class Player : MonoBehaviour
         CurrentVelocity = workspace;
     }
 
+    public void SetParent(Transform newParent)
+    {
+        originalParent = transform.parent;
+        transform.parent = newParent;
+    }
+
+    public void ResetParent()
+    {
+        transform.parent = originalParent;
+    }
+
+
     #endregion
 
     #region Check Functions
@@ -134,7 +150,27 @@ public class Player : MonoBehaviour
         if(Xinput != 0 && Xinput != FacingDirection)
         {
             Flip();
-            Debug.Log("Flip");
+            //Debug.Log("Flip");
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "NextLevel")
+        {
+            AtEndOfLevel = true;
+        }
+    }
+
+    public bool CheckIfPlayerIsMoving()
+    {
+        if (CurrentVelocity.x == 0 && CurrentVelocity.y == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 
