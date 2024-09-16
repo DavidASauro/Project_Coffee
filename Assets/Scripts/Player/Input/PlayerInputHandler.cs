@@ -57,7 +57,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnInteractInput(InputAction.CallbackContext context)
     {
-       
         if (context.started)
         {
             InteractInput = true;

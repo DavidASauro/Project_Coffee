@@ -11,17 +11,19 @@ public class PlayerInteractNextLevelState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
-
+        
     }
 
     public override void Exit()
     {
         base.Exit();
+        player.isChangingLevel = true;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        stateMachine.ChangeState(player.IdleState);
     }
 
     public override void PhysicsUpdate()

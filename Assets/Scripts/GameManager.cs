@@ -1,52 +1,46 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public PlayerMovement player;
+    public LoadLevelManager SceneLoader;
     public GameObject UserInterface;
+    private Player player;
+
+    List<int> SceneIndexs = new List<int> {1,2,3,4,5};
+    List<int> SceneIndexsTwo = new List<int>{3,4,5};
+
 
     private void Awake()
     {
-        Instance = this;  
+        Instance = this;
+       
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = FindObjectOfType<Player>();
       
     }
 
     // Update is called once per frame
     void Update()
     {
-       checkPlayerHealth();
-    }
-
-
-    void checkPlayerHealth()
-    {
-        if (player.currentHealth <= 0)
+      
+        if (player.isChangingLevel == true)
         {
-            Time.timeScale = 0;
-            UserInterface.SetActive(true);
-            resetPlayer();
+            SceneLoader.LoadLevelByIndex(SceneIndexsTwo[UnityEngine.Random.Range(0,SceneIndexsTwo.Count)]);
         }
+      
     }
-
-    void resetPlayer()
-    {
-        player.currentHealth = player.maxHealth;
-        player.isDead = false;
-        
-
-    }
-
+    
 }
+
 
 
