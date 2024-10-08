@@ -14,5 +14,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UnderWorld01.unity
     guid: 13e2f280d50749843b9c63b028bb4e3b
+  - enabled: 1
+    path: Assets/Scenes/IntroLevel.unity
+    guid: 800a3f046d6446c4ea66171c7ee817de
+  - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: 57bce21007a24624ba41ceddd4c4a77b
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: a127c12403b9d94488361604669ef03b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 0061ef2bff7874d438845eb501bcd508, type: 2}

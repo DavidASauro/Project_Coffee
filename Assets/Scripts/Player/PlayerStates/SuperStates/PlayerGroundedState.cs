@@ -47,6 +47,7 @@ public class PlayerGroundedState : State
         JumpInput = player.InputHandler.JumpInput;
         DashInput = player.InputHandler.DashInput;
         InteractInput = player.InputHandler.InteractInput;
+        
 
         if (JumpInput && player.JumpState.CanJump())
         {
@@ -60,17 +61,11 @@ public class PlayerGroundedState : State
         {
             stateMachine.ChangeState(player.DashState);
             
-        }else if (!player.CheckIfPlayerIsMoving() && InteractInput)
+        }else if (!player.CheckIfPlayerIsMoving() && player.InputHandler.InteractInput && player.AtEndOfLevel)
         {
             
-            Debug.Log("next level");
             player.InputHandler.UseInteractInput();
-
-
-        }
-        else if (!player.CheckIfPlayerIsMoving())
-        {
-            //switch to other animation
+            stateMachine.ChangeState(player.InteractNextLevelState);
         }
     }
 

@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
 
     private Vector2 workspace;
     public bool AtEndOfLevel { get; private set; }
+    public bool isChangingLevel;
 
     #endregion
 
@@ -154,17 +155,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.collider.tag == "NextLevel")
-        {
+        
+        if (collision.CompareTag("NextLevel"))
+        { 
             AtEndOfLevel = true;
         }
     }
-
+ 
     public bool CheckIfPlayerIsMoving()
     {
-        if (CurrentVelocity.x == 0 && CurrentVelocity.y == 0)
+        if ((CurrentVelocity.x >= -2 || CurrentVelocity.x >= 2) && (CurrentVelocity.y == 0))
         {
             return false;
         }

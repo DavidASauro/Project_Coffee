@@ -9,6 +9,7 @@ TagManager:
   - deathBox
   - spawnPoint
   - NextLevel
+  - Ground
   layers:
   - Default
   - TransparentFX

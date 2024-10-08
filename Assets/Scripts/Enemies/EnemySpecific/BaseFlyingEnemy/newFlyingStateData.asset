@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d17273e1b81111142a2bf4921c74cc18, type: 3}
-  m_Name: newChargeStateData
+  m_Script: {fileID: 11500000, guid: 70b9d05970998154ea76aaa95a05e46a, type: 3}
+  m_Name: newFlyingStateData
   m_EditorClassIdentifier: 
-  chargeSpeed: 10
-  chargeTime: 2
-  chargeToPlayerLocationBuffer: 1
-  afterChargeDelay: 1
+  flyingSpeed: 5
+  tolerance: 1
+  pointA: {x: 65.17, y: 6.07, z: 0}
+  pointB: {x: 72.18, y: 6.07, z: 0}

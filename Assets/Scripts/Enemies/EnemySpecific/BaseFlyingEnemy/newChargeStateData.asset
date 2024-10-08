@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d17273e1b81111142a2bf4921c74cc18, type: 3}
   m_Name: newChargeStateData
   m_EditorClassIdentifier: 
-  chargeSpeed: 10
+  chargeSpeed: 6
   chargeTime: 2
   chargeToPlayerLocationBuffer: 1
   afterChargeDelay: 1

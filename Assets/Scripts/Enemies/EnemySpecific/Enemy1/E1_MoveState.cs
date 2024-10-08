@@ -24,6 +24,7 @@ public class E1_MoveState : MoveState
     {
         base.LogicUpdate();
 
+
         if (isPlayerInMinAgroRange)
         {
             fsm.ChangeState(enemy.playerDetectedState);
