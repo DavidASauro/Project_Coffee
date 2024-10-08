@@ -33,7 +33,7 @@ public class E1_ChargeState : ChargeState
         {
             if (isPlayerInMinAgroRange)
             {
-                //Mayeb add delay in future if needed
+                //Maybe add delay in future if needed
                
                 fsm.ChangeState(_enemy1.playerDetectedState);
             }

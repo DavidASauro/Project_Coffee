@@ -23,7 +23,7 @@ public class EnemyStates
     {
         startTime = Time.time;
         //entity.animator.SetBool(animBoolName, true);
-        DoChecks();
+        DoChecks(); 
     }
     
     public virtual void Exit()
@@ -33,7 +33,7 @@ public class EnemyStates
 
     public virtual void LogicUpdate()
     {
-
+        
     }
 
     public virtual void PhysicsUpdate()

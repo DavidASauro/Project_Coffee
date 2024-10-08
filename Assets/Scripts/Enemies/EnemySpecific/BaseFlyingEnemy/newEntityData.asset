@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 554d09bb0ce0a3e4881b02d578bdf715, type: 3}
-  m_Name: Enemy1_Data
+  m_Name: newEntityData
   m_EditorClassIdentifier: 
-  wallCheckDistance: 0.55
-  ledgeCheckDistance: 0.7
-  maxAgroDistance: 5
+  wallCheckDistance: 0.2
+  ledgeCheckDistance: 0.4
+  maxAgroDistance: 4
   minAgroDistance: 2
   whatIsGround:
     serializedVersion: 2
@@ -22,6 +22,3 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  whatIsWall:
-    serializedVersion: 2
-    m_Bits: 1024

@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
       
         if (player.isChangingLevel == true)
         {
+
             SceneLoader.LoadLevelByIndex(SceneIndexsTwo[UnityEngine.Random.Range(0,SceneIndexsTwo.Count)]);
         }
       

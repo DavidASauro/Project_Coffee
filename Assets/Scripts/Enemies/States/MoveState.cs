@@ -27,9 +27,7 @@ public class MoveState : EnemyStates
     public override void Enter()
     {
         base.Enter();
-        entity.SetVelocity(stateData.movementSpeed);
-
-        
+        entity.SetVelocity(stateData.movementSpeed);  
     }
 
     public override void Exit()
@@ -40,6 +38,7 @@ public class MoveState : EnemyStates
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        entity.SetVelocity(stateData.movementSpeed);
     }
 
     public override void PhysicsUpdate()
