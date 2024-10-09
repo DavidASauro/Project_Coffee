@@ -11,6 +11,7 @@ public class PlayerGroundedState : State
     private bool isGrounded;
     private bool DashInput;
     private bool InteractInput;
+    private bool attackInput;
     public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName)
     {
     }
@@ -47,6 +48,7 @@ public class PlayerGroundedState : State
         JumpInput = player.InputHandler.JumpInput;
         DashInput = player.InputHandler.DashInput;
         InteractInput = player.InputHandler.InteractInput;
+        attackInput = player.InputHandler.AttackInput;
         
 
         if (JumpInput && player.JumpState.CanJump())
@@ -61,11 +63,21 @@ public class PlayerGroundedState : State
         {
             stateMachine.ChangeState(player.DashState);
             
-        }else if (!player.CheckIfPlayerIsMoving() && player.InputHandler.InteractInput && player.AtEndOfLevel)
+        }else if (!player.CheckIfPlayerIsMoving() && InteractInput && player.AtEndOfLevel)
         {
             
             player.InputHandler.UseInteractInput();
             stateMachine.ChangeState(player.InteractNextLevelState);
+        }else if (attackInput)
+        {
+            if (player.currentWeapon is RangedWeapon)
+            {
+                stateMachine.ChangeState(player.RangedWeaponAttackState);
+            }else 
+            {
+                stateMachine.ChangeState(player.MeleeWeaponAttackState);
+            }
+            
         }
     }
 

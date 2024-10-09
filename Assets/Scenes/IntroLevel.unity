@@ -154,6 +154,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1069738580}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &30958303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 30958304}
+  - component: {fileID: 30958305}
+  m_Layer: 6
+  m_Name: ProjectilePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &30958304
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30958303}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.18, y: -0.14, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2108481625}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &30958305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30958303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658a391d3457b1c44a4c2b8faaa94e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: 
+  damage: 0
+  fireRate: 0
+  range: 0
+  ammoCapacity: 0
+  relaodTime: 0
+  projectilePrefab: {fileID: 0}
+  projectileWeaponPoint: {fileID: 30958304}
 --- !u!1 &34875243
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,7 +473,7 @@ Transform:
   m_GameObject: {fileID: 362327978}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 26.78, y: -0.8911772, z: -10}
+  m_LocalPosition: {x: 27.05, y: -1.8311771, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 6.37}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1570,7 +1622,7 @@ Transform:
   m_GameObject: {fileID: 1233099354}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.78, y: -0.8911772, z: -10}
+  m_LocalPosition: {x: 27.05, y: -1.8311771, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10295,12 +10347,13 @@ Transform:
   m_GameObject: {fileID: 2108481624}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.78, y: 1.54, z: 0}
+  m_LocalPosition: {x: 27.05, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 765063103}
   - {fileID: 1659868858}
+  - {fileID: 30958304}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2108481626
@@ -10405,6 +10458,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ee70fed0-6edf-43bf-9a8b-2abf7da7bdfa
     m_ActionName: Gameplay/Interact[/XInputControllerWindows/buttonWest,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2108481626}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnAttackInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c97ee7fe-26cf-446f-8879-92e40e4752fd
+    m_ActionName: Gameplay/Attack[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -10423,6 +10492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: e728b3524eb7c964a80bc8b3551f826e, type: 2}
+  currentWeapon: {fileID: 30958305}
   groundCheck: {fileID: 765063103}
   wallCheck: {fileID: 1659868858}
   isChangingLevel: 0

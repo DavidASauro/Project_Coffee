@@ -36,4 +36,7 @@ public class PlayerData : ScriptableObject
     public float wallJumpTime = 0.4f;
     public Vector2 wallJumpAngle = new Vector2(1, 2);
 
+    [Header("Attack State")]
+    public GameObject projectilePrefab;
+    public float projectileDamage = 1f;
 }
