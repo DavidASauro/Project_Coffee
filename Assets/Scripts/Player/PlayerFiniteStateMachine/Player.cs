@@ -19,9 +19,12 @@ public class Player : MonoBehaviour
     public PlayerDashState DashState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerInteractNextLevelState InteractNextLevelState { get; private set; }
+    public PlayerRangedWeaponAttackState RangedWeaponAttackState { get; set; }
+    public PlayerMeleeWeaponAttackState MeleeWeaponAttackState { get; set;}
 
     [SerializeField]
     private PlayerData playerData;
+
     #endregion
 
     #region Components
@@ -29,7 +32,17 @@ public class Player : MonoBehaviour
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D RB { get; private set; }
 
+    [SerializeField]
+    public Weapon currentWeapon;
+    [SerializeField]
+    private Entity currentEnemy;
+
     private Transform originalParent;
+
+    [SerializeField]
+    private Health playerHealth;
+
+    
     #endregion
 
     #region Check Transforms
@@ -64,6 +77,8 @@ public class Player : MonoBehaviour
         DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
         WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
         InteractNextLevelState = new PlayerInteractNextLevelState(this, StateMachine, playerData, "nextLevel");
+        RangedWeaponAttackState = new PlayerRangedWeaponAttackState(this, StateMachine, playerData, "wallslide");
+        MeleeWeaponAttackState = new PlayerMeleeWeaponAttackState(this, StateMachine, playerData, "wallslide");
 
     }
 
@@ -175,6 +190,16 @@ public class Player : MonoBehaviour
             return true;
         }
     }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag=="enemy")
+        {
+            currentEnemy = collision.gameObject.GetComponent<Entity>();
+            playerHealth.TakeDamage(currentEnemy.damage);
+        }
+    }
+
 
     public void OnDrawGizmos()
     {

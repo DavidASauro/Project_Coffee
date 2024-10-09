@@ -163,4 +163,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 3898506173216525973}
   circleCollider: {fileID: 1479821988892419355}
-  RangeWeapon: {fileID: 11400000, guid: 19c22c606712b0a4cb76bf129c0936af, type: 2}
+  projectileSpeed: 5

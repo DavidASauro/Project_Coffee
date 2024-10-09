@@ -12,6 +12,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool JumpInputStop { get; private set; }
     public bool DashInput { get; private set; }
     public bool InteractInput { get; private set; }
+    public bool AttackInput { get; set; } 
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
@@ -63,6 +64,15 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnAttackInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Debug.Log("SHOOTED");
+            AttackInput = true;
+        }
+    }
+    public void UseAttackInput() => AttackInput = false;
     public void UseDash() => DashInput = false;
 
     public void UseJumpInput() => JumpInput = false;

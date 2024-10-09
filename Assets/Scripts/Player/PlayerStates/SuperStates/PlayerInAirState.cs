@@ -17,6 +17,7 @@ public class PlayerInAirState : State
     private bool isThouchingWall;
     private bool dashInput;
     private bool isTouchignWallBack;
+    private bool attackInput;
 
     private float startWallJumpCoyoteTime;
     public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName)
@@ -62,6 +63,7 @@ public class PlayerInAirState : State
         jumpInput = player.InputHandler.JumpInput;
         JumpInputStop = player.InputHandler.JumpInputStop;
         dashInput = player.InputHandler.DashInput;
+        attackInput = player.InputHandler.AttackInput;
 
         CheckJumpMultiplier();
 
@@ -95,7 +97,17 @@ public class PlayerInAirState : State
                 player.DashState.isDashing = false;
             }
             
-        }else
+        }else if (attackInput)
+        {
+            if(player.currentWeapon is RangedWeapon)
+            {
+                stateMachine.ChangeState(player.RangedWeaponAttackState);
+            }else
+            {
+                stateMachine.ChangeState(player.MeleeWeaponAttackState);
+            }
+        }
+        else
         {
            
            player.CheckIfShouldFlip(xInput);

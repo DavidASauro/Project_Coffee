@@ -6,14 +6,14 @@ public class ProjectileMovement : MonoBehaviour
 {
     public Rigidbody2D body;
     public CircleCollider2D circleCollider;
-    public RangedWeapon RangeWeapon;
+    public float projectileSpeed;
 
 
     // Start is called before the first frame update
     void Start()
     {
      
-       body.velocity = transform.right * RangeWeapon.projectileSpeed;
+       body.velocity = transform.right * projectileSpeed;
        
     }
 
@@ -25,15 +25,7 @@ public class ProjectileMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("enemy"))
-        {
-            BaseEnemy enemy = collision.collider.GetComponent<BaseEnemy>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(RangeWeapon.damage);
-                Destroy(gameObject);
-            }
-        }
+       
         Destroy(gameObject);
     }
 }

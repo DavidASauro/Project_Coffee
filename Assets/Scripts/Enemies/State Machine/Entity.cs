@@ -14,11 +14,18 @@ public class Entity : MonoBehaviour
     private Vector2 VelocityWorkspace;
 
     [SerializeField]
+    private Health enemyHealth;
+    [SerializeField]
+    private Player player;
+
+    [SerializeField]
     private Transform wallCheck;
     [SerializeField]
     private Transform ledgeCheck;
     [SerializeField]
     private Transform playerCheck;
+    [SerializeField]
+    public float damage;
 
     public virtual void Start()
     {
@@ -72,6 +79,14 @@ public class Entity : MonoBehaviour
     public virtual bool CheckPlayerInMaxAgroRange()
     {
         return Physics2D.Raycast(playerCheck.position, transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "projectile")
+        {
+            enemyHealth.TakeDamage(player.currentWeapon.damage);
+        }
     }
 
     public virtual void OnDrawGizmos()
