@@ -195,7 +195,8 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag=="enemy")
         {
-            playerHealth.TakeDamage(1);
+            currentEnemy = collision.gameObject.GetComponent<Entity>();
+            playerHealth.TakeDamage(currentEnemy.damage);
         }
     }
 
