@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
     {   
         CurrentVelocity = RB.velocity;
         StateMachine.CurrentState.LogicUpdate();
+        Debug.Log(StateMachine.CurrentState);
     }
 
     private void FixedUpdate()
@@ -154,12 +155,14 @@ public class Player : MonoBehaviour
 
     public bool CheckIfTouchingWall()
     {
-        return Physics2D.Raycast(wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.groundMask);
+        //return Physics2D.Raycast(wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.groundMask);
+        return Physics2D.BoxCast(wallCheck.position, new Vector2(playerData.wallCheckX, playerData.wallCheckY),0f,Vector2.right,playerData.wallCheckDistance,playerData.groundMask);
     }
 
     public bool CheckIfTouchingWallBehind()
     {
-        return Physics2D.Raycast(wallCheck.position, Vector2.right * -FacingDirection, playerData.wallCheckDistance, playerData.groundMask);
+        //return Physics2D.Raycast(wallCheck.position, Vector2.right * -FacingDirection, playerData.wallCheckDistance, playerData.groundMask);
+        return Physics2D.BoxCast(wallCheck.position, new Vector2(playerData.wallCheckX, playerData.wallCheckY), 0f, Vector2.right * -FacingDirection, playerData.wallCheckDistance, playerData.groundMask);
     }
     public void CheckIfShouldFlip(float Xinput)
     {
@@ -204,7 +207,8 @@ public class Player : MonoBehaviour
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + playerData.wallCheckDistance, wallCheck.position.y, wallCheck.position.z));
+        //Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + playerData.wallCheckDistance, wallCheck.position.y, wallCheck.position.z));
+        Gizmos.DrawCube(wallCheck.position, new Vector3(playerData.wallCheckX + playerData.wallCheckDistance,playerData.wallCheckY,0));
         Gizmos.DrawCube(groundCheck.position, new Vector3(playerData.groundCheckX, playerData.groundCheckY + playerData.groundCastDistance*2, 0));
     }
 

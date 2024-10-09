@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "newPlayerData", menuName = "Data/Player Data/Base Data")]
@@ -15,12 +16,17 @@ public class PlayerData : ScriptableObject
     [Header("Wall Slide State")]
     public float wallSlideSpeed = 3f;
 
-    [Header("Check Variables")]
+    [Header("Ground Check Variables")]
     public float groundCheckX = 0.5f;
     public float groundCheckY = 0.5f;
     public float groundCastDistance = 0.5f;
     public LayerMask groundMask;
+
+    [Header("Wall Check Variables")]
     public float wallCheckDistance = 0.5f;
+    public float wallCheckX = 0.5f;
+    public float wallCheckY = 0.5f;
+
 
     [Header("In Air State")]
     public float coyoteTime = 0.2f;

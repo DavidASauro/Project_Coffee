@@ -38,7 +38,7 @@ public class FlyingState : EnemyStates
             targetWaypoint = (targetWaypoint == stateData.pointA) ? stateData.pointB : stateData.pointA;
         }
 
-        Debug.Log(targetWaypoint);
+       
 
     }
 

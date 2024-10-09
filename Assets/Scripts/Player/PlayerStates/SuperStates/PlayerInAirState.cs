@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class PlayerInAirState : State
@@ -16,7 +17,7 @@ public class PlayerInAirState : State
     private bool JumpInputStop;
     private bool isThouchingWall;
     private bool dashInput;
-    private bool isTouchignWallBack;
+    private bool isTouchingWallBack;
     private bool attackInput;
 
     private float startWallJumpCoyoteTime;
@@ -29,13 +30,13 @@ public class PlayerInAirState : State
         base.DoChecks();
 
         oldIsTouchingWall = isThouchingWall;
-        oldIsTouchingWallBack = isTouchignWallBack;
+        oldIsTouchingWallBack = isTouchingWallBack;
 
         isGrounded = player.CheckIfGrounded();
         isThouchingWall = player.CheckIfTouchingWall();
-        isTouchignWallBack = player.CheckIfTouchingWallBehind();
+        isTouchingWallBack = player.CheckIfTouchingWallBehind();
 
-        if (!wallJumpCoyoteTime && !isThouchingWall && !isTouchignWallBack && (oldIsTouchingWall || oldIsTouchingWallBack))
+        if (!wallJumpCoyoteTime && !isThouchingWall && !isTouchingWallBack && (oldIsTouchingWall || oldIsTouchingWallBack))
         {
             StartWallJumpCoyoteTime();
         }
@@ -70,8 +71,10 @@ public class PlayerInAirState : State
         if (isGrounded && player.CurrentVelocity.y < 0.01f)
         {
             stateMachine.ChangeState(player.LandState);
-        }else if (jumpInput && (isThouchingWall || isTouchignWallBack || wallJumpCoyoteTime))
+        }else if (jumpInput && (isThouchingWall || isTouchingWallBack || wallJumpCoyoteTime))
         {
+            Debug.Log("isTouchingWall = " + isThouchingWall);
+            Debug.Log("isTouchingWallBack = " + isTouchingWallBack);
             StopWallJumpCoyoteTime();
             isThouchingWall = player.CheckIfTouchingWall();
             player.WallJumpState.DetermineWallJumpDirection(isThouchingWall);

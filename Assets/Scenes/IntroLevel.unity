@@ -170,7 +170,7 @@ GameObject:
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &30958304
 Transform:
   m_ObjectHideFlags: 0
@@ -203,9 +203,8 @@ MonoBehaviour:
   fireRate: 0
   range: 0
   ammoCapacity: 0
-  relaodTime: 0
-  projectilePrefab: {fileID: 0}
-  projectileWeaponPoint: {fileID: 30958304}
+  reloadTime: 0
+  projectileSpeed: 0
 --- !u!1 &34875243
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +472,7 @@ Transform:
   m_GameObject: {fileID: 362327978}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.05, y: -1.8311771, z: -10}
+  m_LocalPosition: {x: 27.037, y: -1.9651772, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 6.37}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -942,6 +941,7 @@ GameObject:
   - component: {fileID: 611958138}
   - component: {fileID: 611958140}
   - component: {fileID: 611958141}
+  - component: {fileID: 611958142}
   m_Layer: 0
   m_Name: enemy
   m_TagString: enemy
@@ -1032,9 +1032,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: b46720b034bddbf42ad188fc91f1c673, type: 2}
+  enemyHealth: {fileID: 611958142}
+  player: {fileID: 2108481628}
   wallCheck: {fileID: 1251851510}
   ledgeCheck: {fileID: 590913053}
   playerCheck: {fileID: 120621240}
+  damage: 1
   idleStateData: {fileID: 11400000, guid: c890bff852ec85f429150a32d0f6cf09, type: 2}
   flyingStateData: {fileID: 11400000, guid: 81cb2658b941edb449aef1324081bd20, type: 2}
   playerDetectedData: {fileID: 11400000, guid: 59ad064815d2a5a43984015935a464ac, type: 2}
@@ -1111,6 +1114,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6303711, y: 0.54115236}
   m_EdgeRadius: 0
+--- !u!114 &611958142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611958136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 213ef34036180da4aa1ef71c97b99073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  currentHealth: 0
 --- !u!1 &765063102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,8 +1154,8 @@ Transform:
   m_GameObject: {fileID: 765063102}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.001, y: -0.415, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.001, y: -0.422, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2108481625}
@@ -1208,7 +1225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &837265237
 Transform:
   m_ObjectHideFlags: 0
@@ -1622,7 +1639,7 @@ Transform:
   m_GameObject: {fileID: 1233099354}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.05, y: -1.8311771, z: -10}
+  m_LocalPosition: {x: 27.037, y: -1.9651772, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8366,7 +8383,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 1310333480}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b8ce6911b0f1ff14ab4b4519747825ed, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -8844,7 +8861,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b8ce6911b0f1ff14ab4b4519747825ed, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -9730,9 +9747,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: 0680c828cb30b4647973b4280843d03b, type: 2}
+  enemyHealth: {fileID: 0}
+  player: {fileID: 0}
   wallCheck: {fileID: 1254915020}
   ledgeCheck: {fileID: 603060506}
   playerCheck: {fileID: 1066847585}
+  damage: 0
   idleStateData: {fileID: 11400000, guid: 08c493c7e78fb50419e581fa241857d6, type: 2}
   moveStateData: {fileID: 11400000, guid: 32b28e9450b482f42abda5312b79f0d8, type: 2}
   playerDetectedData: {fileID: 11400000, guid: 3ce8f99d63b3e1b4397c35ca1888c7ed, type: 2}
@@ -9886,7 +9906,7 @@ Transform:
   m_GameObject: {fileID: 1659868857}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.025, y: -0.146, z: 0}
+  m_LocalPosition: {x: 0.009, y: 0.004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10331,6 +10351,7 @@ GameObject:
   - component: {fileID: 2108481628}
   - component: {fileID: 2108481627}
   - component: {fileID: 2108481626}
+  - component: {fileID: 2108481633}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -10347,7 +10368,7 @@ Transform:
   m_GameObject: {fileID: 2108481624}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.05, y: 0.6, z: 0}
+  m_LocalPosition: {x: 27.037, y: 0.466, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10493,6 +10514,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: e728b3524eb7c964a80bc8b3551f826e, type: 2}
   currentWeapon: {fileID: 30958305}
+  currentEnemy: {fileID: 0}
+  playerHealth: {fileID: 2108481633}
   groundCheck: {fileID: 765063103}
   wallCheck: {fileID: 1659868858}
   isChangingLevel: 0
@@ -10553,7 +10576,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2108481624}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b8ce6911b0f1ff14ab4b4519747825ed, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -10641,6 +10664,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2108481633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108481624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 213ef34036180da4aa1ef71c97b99073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

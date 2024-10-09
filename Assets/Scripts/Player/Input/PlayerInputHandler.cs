@@ -68,7 +68,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("SHOOTED");
+           
             AttackInput = true;
         }
     }
