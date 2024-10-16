@@ -9,7 +9,7 @@ public class Gun : RangedWeapon
 
     public override void shoot()
     {
-        base.shoot();
+        base.shoot();   
         Instantiate(projectilePrefab, projectileWeaponPoint.position, projectileWeaponPoint.rotation);
     }
 }

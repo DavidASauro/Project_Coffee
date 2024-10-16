@@ -7,6 +7,7 @@ public class PlayerAbilityState : State
 
     protected bool isAbilityDone;
     protected bool isGrounded;
+    protected bool didAWallJump;
     
     public PlayerAbilityState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName)
     {
@@ -23,6 +24,7 @@ public class PlayerAbilityState : State
         base.Enter();
         
         isAbilityDone = false;
+        
     }
 
     public override void Exit()
@@ -33,6 +35,7 @@ public class PlayerAbilityState : State
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+       
 
         if (isAbilityDone)
         {

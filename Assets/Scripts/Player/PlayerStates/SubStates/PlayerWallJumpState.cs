@@ -18,6 +18,7 @@ public class PlayerWallJumpState : PlayerAbilityState
         player.SetVelocity(playerData.wallJumpVelocity, playerData.wallJumpAngle, wallJumpDirection);
         player.CheckIfShouldFlip(wallJumpDirection);
         player.JumpState.DecreaseAmountOfJumpsLeft();
+        
     }
 
     public override void LogicUpdate()
@@ -26,8 +27,8 @@ public class PlayerWallJumpState : PlayerAbilityState
 
         player.Anim.SetFloat("yVelocity", player.CurrentVelocity.y);
         player.Anim.SetFloat("xVelocity", Mathf.Abs(player.CurrentVelocity.x));
-
-        if(Time.time >=startTime + playerData.wallJumpTime)
+        
+        if (Time.time >= startTime + playerData.wallJumpTime)
         {
             isAbilityDone = true;
         }

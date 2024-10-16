@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
 
     public virtual void shoot()
     {
-        Debug.Log(weaponName + " fired!");
+        //Debug.Log(weaponName + " fired!");
     }
 
 }

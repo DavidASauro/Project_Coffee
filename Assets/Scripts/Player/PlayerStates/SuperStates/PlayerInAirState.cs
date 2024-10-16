@@ -55,8 +55,11 @@ public class PlayerInAirState : State
 
     public override void LogicUpdate()
     {
-        base.LogicUpdate();
+        //Debug.Log("walljumpcoyotetime: " + wallJumpCoyoteTime);
+        //Debug.Log("istouchingwall: " + isThouchingWall);
+        //Debug.Log("istouchingwallback: " + isTouchingWallBack);
 
+        base.LogicUpdate();
         checkCoyoteTime();
         checkWallJumpCoyoteTime();
 
@@ -71,10 +74,8 @@ public class PlayerInAirState : State
         if (isGrounded && player.CurrentVelocity.y < 0.01f)
         {
             stateMachine.ChangeState(player.LandState);
-        }else if (jumpInput && (isThouchingWall || isTouchingWallBack || wallJumpCoyoteTime))
+        }else if (jumpInput && (isThouchingWall && wallJumpCoyoteTime || isTouchingWallBack && wallJumpCoyoteTime))
         {
-            Debug.Log("isTouchingWall = " + isThouchingWall);
-            Debug.Log("isTouchingWallBack = " + isTouchingWallBack);
             StopWallJumpCoyoteTime();
             isThouchingWall = player.CheckIfTouchingWall();
             player.WallJumpState.DetermineWallJumpDirection(isThouchingWall);

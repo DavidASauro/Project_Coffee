@@ -70,12 +70,12 @@ public class Player : MonoBehaviour
 
         IdleState = new PlayerIdleState(this, StateMachine, playerData, "idle");
         MoveState = new PlayerMoveState(this, StateMachine, playerData, "move");
-        JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
-        InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
-        LandState = new PlayerLandState(this, StateMachine, playerData, "land");
+        JumpState = new PlayerJumpState(this, StateMachine, playerData, "jump");
+        InAirState = new PlayerInAirState(this, StateMachine, playerData, "jump");
+        LandState = new PlayerLandState(this, StateMachine, playerData, "landing");
         WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallslide");
         DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
-        WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
+        WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "walljump");
         InteractNextLevelState = new PlayerInteractNextLevelState(this, StateMachine, playerData, "nextLevel");
         RangedWeaponAttackState = new PlayerRangedWeaponAttackState(this, StateMachine, playerData, "wallslide");
         MeleeWeaponAttackState = new PlayerMeleeWeaponAttackState(this, StateMachine, playerData, "wallslide");
@@ -156,7 +156,7 @@ public class Player : MonoBehaviour
     public bool CheckIfTouchingWall()
     {
         //return Physics2D.Raycast(wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.groundMask);
-        return Physics2D.BoxCast(wallCheck.position, new Vector2(playerData.wallCheckX, playerData.wallCheckY),0f,Vector2.right,playerData.wallCheckDistance,playerData.groundMask);
+        return Physics2D.BoxCast(wallCheck.position, new Vector2(playerData.wallCheckX, playerData.wallCheckY),0f,Vector2.right*FacingDirection,playerData.wallCheckDistance,playerData.groundMask);
     }
 
     public bool CheckIfTouchingWallBehind()
@@ -229,5 +229,11 @@ public class Player : MonoBehaviour
         FacingDirection *= -1;
         transform.Rotate(0.0f,180.0f,0.0f);
     }
+    public IEnumerator waitForNextLevelAnimation()
+    {
+        yield return new WaitForSeconds(2.8f);
+        StateMachine.ChangeState(IdleState);
+    }
+
     #endregion
 }
